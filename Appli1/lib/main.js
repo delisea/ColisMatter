@@ -1,0 +1,1 @@
+CoListe = new Mongo.Collection('coliste');

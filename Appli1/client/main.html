@@ -1,0 +1,41 @@
+<head>
+  <title>ColisMatter</title>
+</head>
+
+<body>
+  <h1>Votre liste de colis</h1>
+  {{> loginButtons}}
+  <p></p>
+  {{> liste}}
+</body>
+
+<template name="liste">
+  {{#if currentUser}}
+    {{> addColisForm}}
+    <ul>
+      {{#each colis}}
+        <dl class="colis {{selectedClass}}">{{NameColis}}</dl>
+      {{/each}}
+    </ul>
+    {{#if selectedColis}}
+      Selected Colis: {{selectedColis.NameColis}}  <p></p>
+      <form><input type="submit" value="Détails" name="details"></form>
+      {{#if selectedDetails}}
+        {{NameColis}}: créé à {{LieuDeCreation}} le {{DateCreation}} à destination de {{Destination}}
+      {{/if}}
+      <button class="historique">Historique du colis</button>  <p></p>
+      <button class="remove">Supprimer</button>
+    {{/if}}
+  {{else}}
+    <p>You must be logged-in to see this content</p>
+  {{/if}}
+</template>
+
+<template name="addColisForm">
+  <form>
+      <input type="text" placeholder="Nom du colis" name="colisName">
+      <input type="text" placeholder="Lieu de Départ" name="lieuCreation">
+      <input type="text" placeholder="Lieu de d'Arrivée" name="lieuDestination">
+      <input type="submit" name="Add Colis">
+  </form>
+</template>

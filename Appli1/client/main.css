@@ -1,0 +1,18 @@
+/* CSS declarations go here */
+*{
+	font-size: medium;
+	font-family: Verdana, "Trebuchet MS";
+	font-style: normal; /*italic...*/
+	text-align:center;
+	color:#3B3B3B;
+	background-color:#BFBFBF;
+
+}
+
+.selected{
+	background-color: red;
+}
+
+ul{
+	border:2px black solid;
+}
