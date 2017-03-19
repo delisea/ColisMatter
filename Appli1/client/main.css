@@ -5,7 +5,7 @@
 	font-style: normal; /*italic...*/
 	text-align:center;
 	color:#3B3B3B;
-	background-color:#BFBFBF;
+	/*background-color:#BFBFBF;*/
 
 }
 
@@ -16,3 +16,8 @@
 ul{
 	border:2px black solid;
 }
+
+#map {
+    min-height: 350px;
+    min-width: 100%;
+  }
