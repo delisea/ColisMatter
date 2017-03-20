@@ -32,11 +32,20 @@
       <p></p>
       <dl class="remove">Supprimer</dl>
       <p></p>
-      <a href="#" class="logout">Logout</a>
     {{/if}}
+      <a href="#" class="logout">Logout</a>      <p></p>
+
   {{else}}
     {{> login}}
   {{/if}}
+</template>
+
+<template name="login">
+<form>
+  <input type="text" placeholder="Pseudo" id="pseudo">
+  <input type="password" placeholder="Password" id="pwd">
+  <input type="submit" name="Log">
+</form>
 </template>
 
 <template name="addColisForm">
