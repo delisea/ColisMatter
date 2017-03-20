@@ -19,22 +19,23 @@
 <template name="liste">
   {{#if currentUser}}
     {{> addColisForm}}
-    <ul>
+    <ul id="s1">
       {{#each colis}}
         <dl class="colis {{selectedClass}}">{{NameColis}}</dl>
       {{/each}}
     </ul>
     {{#if selectedColis}}
-      Selected Colis: {{selectedColis.NameColis}}  <p></p>
-      <form><input type="submit" value="Détails" name="details"></form>
+      <dl class="details">Détails</dl>
       {{#if selectedDetails}}
-        {{NameColis}}: créé à {{LieuDeCreation}} le {{DateCreation}} à destination de {{Destination}}
+        {{selectedDetails.NameColis}}: créé à {{selectedDetails.LieuDeCreation}} le {{selectedDetails.DateCreation}} à destination de {{selectedDetails.Destination}}
       {{/if}}
-      <button class="historique">Historique du colis</button>  <p></p>
-      <button class="remove">Supprimer</button>
+      <p></p>
+      <dl class="remove">Supprimer</dl>
+      <p></p>
+      <a href="#" class="logout">Logout</a>
     {{/if}}
   {{else}}
-    <p>You must be logged-in to see this content</p>
+    {{> login}}
   {{/if}}
 </template>
 
