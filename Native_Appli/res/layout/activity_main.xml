@@ -1,0 +1,380 @@
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity" xmlns:android="http://schemas.android.com/apk/res/android">
+
+    
+    <TabHost
+        android:id="@+id/tabhost"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+            </TabWidget>
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+                <RelativeLayout
+                    android:id="@+id/tab2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/background_dark" >
+                        <LinearLayout
+                            android:id="@+id/inventory_buttons_linearLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:padding="5dip" >
+                            <Button
+                                android:id="@+id/inventory_start_button"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/start" />
+
+                            <LinearLayout
+                                android:id="@+id/inventory_tps_linear_layout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" >
+
+                                <TextView
+                                    android:id="@+id/inventory_tps_textView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp"
+                                    android:text="@string/zero" />
+
+                                <TextView
+                                    android:id="@+id/inventory_textView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp"
+                                    android:text="@string/tps" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+                        <ListView
+                            android:id="@+id/inventory_listView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_below="@id/inventory_buttons_linearLayout" >
+                        </ListView>
+				</RelativeLayout>
+                <ScrollView
+                    android:id="@+id/tab1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/background_dark" >
+	                <TableLayout
+	                    android:layout_width="match_parent"
+	                    android:layout_height="wrap_content"
+	                    android:gravity="center"
+						android:orientation="vertical" >
+	                    <TableRow
+	                        android:id="@+id/home_tableRow1"
+	                        android:layout_width="wrap_content"
+	                        android:layout_height="wrap_content"
+	                        android:orientation="vertical" 
+						    android:layout_gravity="center"
+						    android:gravity="center" >
+	                        <TextView
+	                            android:id="@+id/home_status_label"
+	                            android:layout_width="wrap_content"
+	                            android:layout_height="wrap_content"
+	                            android:padding="5dp"
+	                            android:text="@string/connection_status" />
+	                        <TextView
+	                            android:id="@+id/home_status_text"
+	                            android:layout_width="wrap_content"
+	                            android:layout_height="wrap_content"
+	                            android:padding="5dp"
+	                            android:text="@string/disconnected"
+	                            android:textColor="@android:color/holo_red_dark" />
+	                    </TableRow>
+	                    <TableRow
+	                        android:id="@+id/home_tableRow2"
+	                        android:layout_width="wrap_content"
+	                        android:layout_height="wrap_content"
+	                        android:orientation="vertical" 
+						    android:layout_gravity="center"
+						    android:gravity="center" >
+	                        <TextView
+	                            android:id="@+id/home_model_label"
+	                            android:layout_width="wrap_content"
+	                            android:layout_height="wrap_content"
+	                            android:padding="5dp"
+	                            android:text="@string/model" />
+	                        <TextView
+	                            android:id="@+id/home_model_text"
+	                            android:layout_width="wrap_content"
+	                            android:layout_height="wrap_content"
+	                            android:padding="5dp"
+	                            android:text="@string/dash" />
+						</TableRow>
+	                    <TableRow
+	                        android:id="@+id/home_tableRow3"
+	                        android:layout_width="wrap_content"
+	                        android:layout_height="wrap_content"
+	                        android:orientation="vertical" 
+						    android:layout_gravity="center"
+						    android:gravity="center" >
+	                        <TextView
+	                            android:id="@+id/home_serial_label"
+	                            android:layout_width="wrap_content"
+	                            android:layout_height="wrap_content"
+	                            android:padding="5dp"
+	                            android:text="@string/serial" />
+	                        <TextView
+	                            android:id="@+id/home_serial_text"
+	                            android:layout_width="wrap_content"
+	                            android:layout_height="wrap_content"
+	                            android:padding="5dp"
+	                            android:text="@string/dash" />
+						</TableRow>
+	                    <TableRow
+	                        android:id="@+id/home_tableRow4"
+	                        android:layout_width="wrap_content"
+	                        android:layout_height="wrap_content"
+	                        android:orientation="vertical" 
+						    android:layout_gravity="center"
+						    android:gravity="center" >
+	                        <TextView
+	                            android:id="@+id/home_firmware_label"
+	                            android:layout_width="wrap_content"
+	                            android:layout_height="wrap_content"
+	                            android:padding="5dp"
+	                            android:text="@string/firmware" />
+	                        <TextView
+	                            android:id="@+id/home_firmware_text"
+	                            android:layout_width="wrap_content"
+	                            android:layout_height="wrap_content"
+	                            android:padding="5dp"
+	                            android:text="@string/dash" />
+						</TableRow>
+	                </TableLayout>
+				</ScrollView>
+
+
+                
+                <RelativeLayout
+                    android:id="@+id/tab3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/background_dark" >
+                        <LinearLayout
+                            android:id="@+id/write_buttons_linearLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:padding="5dip" >
+                            <Button
+                                android:id="@+id/write_refresh_button"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/refresh" />
+                        </LinearLayout>
+                        <ListView
+                            android:id="@+id/write_listView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_below="@id/write_buttons_linearLayout" >
+                        </ListView>
+				</RelativeLayout>
+                
+                				<ScrollView
+				    android:id="@+id/tab4"
+				    android:layout_width="match_parent"
+				    android:layout_height="wrap_content"
+				    android:background="@android:color/background_dark" >
+					<LinearLayout
+					    android:layout_width="match_parent"
+					    android:layout_height="wrap_content"
+					    android:gravity="center"
+					    android:orientation="vertical" >
+					    	<LinearLayout
+					    	    android:id="@+id/settings_tableRow1"
+					    	    android:layout_width="match_parent"
+					    	    android:layout_height="wrap_content"
+					    	    android:layout_gravity="center"
+					    	    android:gravity="center"
+					    	    android:orientation="vertical"
+					    	    android:padding="5dip" >
+	                            <TextView
+	                                android:id="@+id/settings_region_textView"
+	                                android:layout_width="wrap_content"
+	                                android:layout_height="wrap_content"
+	                                android:text="@string/region" />
+
+	                            <Spinner
+	                                android:id="@+id/settings_region_spinner"
+	                                android:layout_width="match_parent"
+	                                android:layout_height="wrap_content" />
+
+	                        </LinearLayout>
+	                        <LinearLayout
+	                            android:id="@+id/settings_tableRow2"
+	                            android:layout_width="match_parent"
+	                            android:layout_height="wrap_content"
+	                            android:padding="5dip"
+	                            android:orientation="vertical" 
+						        android:layout_gravity="center"
+						        android:gravity="center"  >
+	                            <TextView
+	                                android:id="@+id/settings_tx_level_textView"
+	                                android:layout_width="wrap_content"
+	                                android:layout_height="wrap_content"
+	                                android:text="@string/tx_level" />
+	                            <Spinner
+	                                android:id="@+id/settings_tx_level_spinner"
+	                                android:layout_width="match_parent"
+	                                android:layout_height="wrap_content" />
+	                        </LinearLayout>
+	                        <LinearLayout
+	                            android:id="@+id/settings_tableRow3"
+	                            android:layout_width="match_parent"
+	                            android:layout_height="wrap_content"
+	                            android:padding="5dip"
+	                            android:orientation="vertical" 
+						        android:layout_gravity="center"
+						        android:gravity="center" >
+	                            <TextView
+	                                android:id="@+id/settings_link_frequency_textView"
+	                                android:layout_width="wrap_content"
+	                                android:layout_height="wrap_content"
+	                                android:text="@string/link_frequency" />
+	                            <Spinner
+	                                android:id="@+id/settings_link_frequency_spinner"
+	                                android:layout_width="match_parent"
+	                                android:layout_height="wrap_content" />
+	                        </LinearLayout>
+	                        <LinearLayout
+	                            android:id="@+id/settings_tableRow4"
+	                            android:layout_width="match_parent"
+	                            android:layout_height="wrap_content"
+	                            android:padding="5dip"
+	                            android:orientation="vertical" 
+						        android:layout_gravity="center"
+						        android:gravity="center" >
+	                            <TextView
+	                                android:id="@+id/settings_rx_decoding_textView"
+	                                android:layout_width="wrap_content"
+	                                android:layout_height="wrap_content"
+	                                android:text="@string/rx_decoding" />
+	                            <Spinner
+	                                android:id="@+id/settings_rx_decoding_spinner"
+	                                android:layout_width="match_parent"
+	                                android:layout_height="wrap_content" />
+	                        </LinearLayout>
+	                        <LinearLayout
+	                            android:id="@+id/settings_tableRow5"
+	                            android:layout_width="match_parent"
+	                            android:layout_height="wrap_content"
+	                            android:padding="5dip"
+	                            android:orientation="vertical" 
+						        android:layout_gravity="center"
+						        android:gravity="center" >
+	                            <TextView
+	                                android:id="@+id/settings_tx_modulation_textView"
+	                                android:layout_width="wrap_content"
+	                                android:layout_height="wrap_content"
+	                                android:text="@string/tx_modulation" />
+	                            <Spinner
+	                                android:id="@+id/settings_tx_modulation_spinner"
+	                                android:layout_width="match_parent"
+	                                android:layout_height="wrap_content" />
+	                        </LinearLayout>
+	                        <LinearLayout
+	                            android:id="@+id/settings_tableRow6"
+	                            android:layout_width="match_parent"
+	                            android:layout_height="wrap_content"
+	                            android:padding="5dip"
+	                            android:orientation="vertical" 
+						        android:layout_gravity="center"
+						        android:gravity="center" >
+	                            <TextView
+	                                android:id="@+id/settings_q_textView"
+	                                android:layout_width="wrap_content"
+	                                android:layout_height="wrap_content"
+	                                android:text="@string/q" />
+	                            <Spinner
+	                                android:id="@+id/settings_q_spinner"
+	                                android:layout_width="match_parent"
+	                                android:layout_height="wrap_content" />
+	                        </LinearLayout>
+	                        <LinearLayout
+	                            android:id="@+id/settings_tableRow7"
+	                            android:layout_width="match_parent"
+	                            android:layout_height="wrap_content"
+	                            android:padding="5dip"
+	                            android:orientation="vertical" 
+						        android:layout_gravity="center"
+						        android:gravity="center" >
+	                            <TextView
+	                                android:id="@+id/settings_rounds_textView"
+	                                android:layout_width="wrap_content"
+	                                android:layout_height="wrap_content"
+	                                android:text="@string/rounds" />
+	                            <Spinner
+	                                android:id="@+id/settings_rounds_spinner"
+	                                android:layout_width="match_parent"
+	                                android:layout_height="wrap_content" />
+	                        </LinearLayout>
+	                        <LinearLayout
+	                            android:id="@+id/settings_tableRow8"
+	                            android:layout_width="match_parent"
+	                            android:layout_height="wrap_content"
+	                            android:padding="5dip"
+	                            android:orientation="vertical" 
+						        android:layout_gravity="center"
+						        android:gravity="center" >
+	                            <TextView
+	                                android:id="@+id/settings_session_textView"
+	                                android:layout_width="wrap_content"
+	                                android:layout_height="wrap_content"
+	                                android:text="@string/session" />
+	                            <Spinner
+	                                android:id="@+id/settings_session_spinner"
+	                                android:layout_width="match_parent"
+	                                android:layout_height="wrap_content" />
+	                        </LinearLayout>
+	                        <LinearLayout
+	                            android:id="@+id/settings_tableRow9"
+	                            android:layout_width="match_parent"
+	                            android:layout_height="wrap_content"
+	                            android:padding="5dip"
+	                            android:orientation="vertical" 
+						        android:layout_gravity="center"
+						        android:gravity="center" >
+	                            <TextView
+	                                android:id="@+id/settings_target_textView"
+	                                android:layout_width="wrap_content"
+	                                android:layout_height="wrap_content"
+	                                android:text="@string/target" />
+	                            <Spinner
+	                                android:id="@+id/settings_target_spinner"
+	                                android:layout_width="match_parent"
+	                                android:layout_height="wrap_content" />
+	                        </LinearLayout>
+					</LinearLayout>
+                </ScrollView>
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
+</RelativeLayout>
