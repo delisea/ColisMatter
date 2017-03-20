@@ -26,9 +26,6 @@ Template.liste.helpers({
 	'selectedColis': function(){
 		var selected_Colis = Session.get('selected_Colis');
 		return CoListe.findOne({ _id: selected_Colis });
-	},
-	'mapa': function(){
-		return 0;
 	}
 });
 
@@ -82,14 +79,8 @@ Template.addColisForm.events({
 		*/
 	}
 });
-/*
-if (Meteor.isClient) {
-    L.Icon.Default.imagePath = '/packages/bevanhunt_leaflet/images/';
-    var map = L.map('map');
-  }
-  if (Meteor.isClient) {
-    L.tileLayer.provider('Stamen.Watercolor').addTo(map);
-  }*/
+
+
 /* Un colis
 *_id
 *CreatedBy
