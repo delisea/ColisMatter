@@ -16,3 +16,7 @@
 ul{
 	border:2px black solid;
 }
+
+#s1{
+	-webkit-padding-start:0;
+}

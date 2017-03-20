@@ -12,8 +12,6 @@ import './main.html';
 Template.liste.helpers({
 	'colis': function(){
 		var currentUserId = Meteor.userId();
-		console.log(!!window.cordova);
-		console.log("yo");
 		return CoListe.find({ createdBy: currentUserId}, {sort: {score: -1, name: 1}});
 	},
 	'selectedClass': function(){
@@ -26,22 +24,35 @@ Template.liste.helpers({
 	'selectedColis': function(){
 		var selected_Colis = Session.get('selected_Colis');
 		return CoListe.findOne({ _id: selected_Colis });
+	},
+	'selectedDetails': function(){
+		var selected_Details  = Session.get('selected_Details');
+		return CoListe.findOne({_id: selected_Details});
 	}
 });
 
 Template.liste.events({
 	'click .colis': function(){
-		var colisId = this._id;
-		Session.set('selected_Colis', colisId);
-		Session.set('selected_Details', 0);
+		var x = Session.get('selected_Colis')
+		if (x!=undefined){
+			Session.set('selected_Colis', undefined);
+			delete Session.keys.selected_Colis;
+		}
+		else{
+			var colisId = this._id;
+			Session.set('selected_Colis', colisId);
+		}
 	},
 	'click .details': function(){ //A transformer en bouton détails qui affiche les détails du colis
-		var selected_Colis = Session.get('selected_Colis');
-		
-	},
-	'click .historique': function(){ //A transformer en bouton historique qui affiche l'hsitorique
-		var selected_Colis = Session.get('selected_Colis');
-		CoListe.update({_id: selected_Colis}, {$inc: {score : -5}});	
+		var x = Session.get('selected_Details')
+		if (x!=undefined){
+			Session.set('selected_Details', undefined);
+			delete Session.keys.selected_Details;
+		}
+		else{
+			var selected_Colis = Session.get('selected_Colis');
+			Session.set('selected_Details', selected_Colis);
+		}	
 	},
 	'click .remove': function(){
 		var selected_Colis = Session.get('selected_Colis');
@@ -60,7 +71,7 @@ Template.addColisForm.events({
 		var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
 		var time = today.getHours() + ":" + today.getMinutes();
 		var liste = new String("");
-		liste = 
+		 
 		CoListe.insert({
 			NameColis: colisNameVar,
 			LieuDeCreation: colisSrcVar,
