@@ -21,3 +21,7 @@ ul{
     min-height: 350px;
     min-width: 100%;
   }
+
+#s1{
+	-webkit-padding-start:0;
+}
