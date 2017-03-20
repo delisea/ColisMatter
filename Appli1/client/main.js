@@ -57,6 +57,14 @@ Template.liste.events({
 	'click .remove': function(){
 		var selected_Colis = Session.get('selected_Colis');
 		CoListe.remove({_id : selected_Colis});
+	},
+	'click .logout': function(event){
+         		event.preventDefault();
+		Meteor.logout(function(error) {
+            		if(error) {
+               			console.log("ERROR: " + error.reason);
+            		}
+         		});
 	}
 });
 
