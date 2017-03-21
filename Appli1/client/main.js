@@ -12,17 +12,22 @@ import './main.html';
 Meteor.startup(() => {
   // code to run on server at startup
   console.log("grospenis");
-  for(var i=0;i<100;i++) console.log(" ");
+  for(var i=0;i<10;i++) console.log(" ");
   if(Meteor.isCordova){
-  	for(var propertyName in WebIntent){
+  	console.log(WebIntent);
+  	console.log("coucou");
+  	//sconsole.log(Grospenis);
+  	for(var propertyName in cordova.WebIntent){
   		console.log(propertyName);
   	}
+  	console.log("coucou2");
   	/*cordova.exec(function(args) {
 		console.log("edoicezsdoxks");
         	}, function(args) {
             	console.log(args);
         	}, 'WebIntent', 'startActivity', [action: 'android.intent.action.VIEW', url: '', type: 'application/vnd.android.package-archive']);
   */
+  cordova.WebIntent.startActivity({action:"android.intent.action.SEND"},function(){},function(){});
   	console.log(WebIntent);
     /*WebIntent.startActivity({
     action: WebIntent.ACTION_VIEW,
