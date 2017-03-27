@@ -60,6 +60,17 @@ Template.liste.helpers({
 	}
 });
 
+Template.log.helpers({
+	'selectedSignIn': function(){
+		var b = Session.get('selected_SignIn');
+		return b;
+	},
+	'selectedSignUp': function(){
+		var b = Session.get('selected_SignUp');
+		return b;
+	}
+});
+
 Template.liste.events({
 	'click .colis': function(){
 		var x = Session.get('selected_Colis')
@@ -72,7 +83,7 @@ Template.liste.events({
 			Session.set('selected_Colis', colisId);
 		}
 	},
-	'click .details': function(){ //A transformer en bouton détails qui affiche les détails du colis
+	'click .details': function(){
 		var x = Session.get('selected_Details')
 		if (x!=undefined){
 			Session.set('selected_Details', undefined);
@@ -97,6 +108,38 @@ Template.liste.events({
 	}
 });
 
+Template.log.events({
+	'click .signin': function(){
+		var x = Session.get('selected_SignIn')
+		if (x!=undefined){
+			Session.set('selected_SignIn', undefined);
+			delete Session.keys.selected_SignIn;
+		}
+		else{
+			Session.set('selected_SignIn', true);
+		}
+		var y = Session.get('selected_SignUp')
+		if (y!=undefined){
+			Session.set('selected_SignUp', undefined);
+			delete Session.keys.selected_SignUp;
+		}		
+	},
+	'click .signup': function(){
+		var x = Session.get('selected_SignUp')
+		if (x!=undefined){
+			Session.set('selected_SignUp', undefined);
+			delete Session.keys.selected_SignUp;
+		}
+		else{
+			Session.set('selected_SignUp', true);
+		}
+		var y = Session.get('selected_SignIn')
+		if (y!=undefined){
+			Session.set('selected_SignIn', undefined);
+			delete Session.keys.selected_SignIn;
+		}
+	},
+});
 Template.addColisForm.events({
 	'submit form': function(e){
 		e.preventDefault();
