@@ -65,6 +65,19 @@
             fail(args);
         }, 'WebIntent', 'sendBroadcast', [params]);
     };
+	
+	
+
+
+    WebIntent.prototype.startreader = function() {
+        return cordova.exec(function(args) {
+            alert("new tag" + args);//callback(args);
+        }, function(args) {
+        }, 'WebIntent', 'onNewIntent', []);
+    };
+	
+	
+	
 cordova.WebIntent = WebIntent;
 for(var i=0;i<10;i++) console.log("kkk");
 for(var propertyName in cordova.WebIntent){

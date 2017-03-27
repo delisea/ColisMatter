@@ -122,6 +122,8 @@ public class WebIntent extends CordovaPlugin {
                 callbackContext.sendPluginResult(result);
                 return true;
                 //return result;
+            } else if (action.equals("onNewIntent")) {
+            	TODO
             } else if (action.equals("sendBroadcast")) 
             {
                 if (args.length() != 1) {
