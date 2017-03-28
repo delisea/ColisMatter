@@ -26,7 +26,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name=".FirstService" ></service>
+        <service android:name=".FirstService" >
+            <intent-filter>
+                <action android:name="com.whatever.servicename" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

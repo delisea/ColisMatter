@@ -236,12 +236,12 @@ public class WebIntent extends CordovaPlugin {
     }
     
         
-    RFID_service_start(CallbackContext clbr) {
+    void RFID_service_start(CallbackContext clbr) {
     	CallBack_READ = clbr;
     	Intent inte = new Intent("com.whatever.servicename");
         inte.setPackage("com.example.delise.myapplication");
-        startService(inte);
-        bindService(inte, networkServiceConnection, Context.BIND_AUTO_CREATE);
+        cordova.getActivity().getApplicationContext().startService(inte);
+        cordova.getActivity().getApplicationContext().bindService(inte, networkServiceConnection, Context.BIND_AUTO_CREATE);
     }
     private ServiceConnection mConnection = new ServiceConnection() {
 
@@ -263,7 +263,7 @@ public class WebIntent extends CordovaPlugin {
         }
     };
 
-    private CallbackContext CallBack_READ = null;
+    private static CallbackContext CallBack_READ = null;
     Messenger messenger = new Messenger(new IncomingHandler());
 
     private static class IncomingHandler extends Handler {
