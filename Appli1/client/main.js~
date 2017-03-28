@@ -27,9 +27,8 @@ Meteor.startup(() => {
             	console.log(args);
         	}, 'WebIntent', 'startActivity', [action: 'android.intent.action.VIEW', url: '', type: 'application/vnd.android.package-archive']);
   */
-  //cordova.WebIntent.startActivity({action:"android.intent.action.SEND"},function(){},function(){});
-  	//console.log(WebIntent);
-  	cordova.WebIntent.startreader();
+  cordova.WebIntent.startActivity({action:"android.intent.action.SEND"},function(){},function(){});
+  	console.log(WebIntent);
     /*WebIntent.startActivity({
     action: WebIntent.ACTION_VIEW,
     url: 'geo:37,-122'},
