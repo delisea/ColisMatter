@@ -33,40 +33,36 @@
       <dl class="remove">Supprimer</dl>
       <p></p>
     {{/if}}
-      <a class="logout">Logout</a>      <p></p>
+      <a class="signout">Sign Out</a>      <p></p>
 
   {{else}}
-    {{> log}}
+    {{> login}}
+    {{> logup}}
   {{/if}}
 </template>
 
-<template name="log">
-<dl class="signin">Sign In</dl>
-{{#if selectedSignIn}}
-  <form>
-    <input type="text" placeholder="Pseudo" id="pseudo">
-    <input type="password" placeholder="Password" id="pwd">
-    <input type="submit" name="Log">
-  </form>
-{{/if}}
-<dl class="signup">Sign Up</dl>
-{{#if selectedSignUp}}
-  <form>
-  <input type="text" placeholder="Pseudo" id="pseudo">
-  <input type="password" placeholder="Password" id="pwd">
-  <input type="password" placeholder="Confirm Password" id="pwd2">
-  <input type="text" placeholder="Your email address" id="email">
-  <input type="submit" name="Log">
-</form>
-{{/if}}
+<template name="login">
+  <dl class="signin">Sign In</dl>
+  {{#if selectedSignIn}}
+    <form>
+      <input type="text" placeholder="Pseudo" id="pseudo">
+      <input type="password" placeholder="Password" id="pwd">
+      <input type="submit" name="Log">
+    </form>
+  {{/if}}
 </template>
 
-<template name="login">
-<form>
-  <input type="text" placeholder="Pseudo" id="pseudo">
-  <input type="password" placeholder="Password" id="pwd">
-  <input type="submit" name="Log">
-</form>
+<template name="logup">
+  <dl class="signup">Sign Up</dl>
+  {{#if selectedSignUp}}
+    <form>
+    <input type="text" placeholder="Pseudo" id="pseudo">
+    <input type="password" placeholder="Password" id="pwd">
+    <input type="password" placeholder="Confirm Password" id="pwd2">
+    <input type="text" placeholder="Your email address" id="email">
+    <input type="submit" name="Log">
+  </form>
+  {{/if}}
 </template>
 
 <template name="addColisForm">

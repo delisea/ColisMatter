@@ -60,11 +60,13 @@ Template.liste.helpers({
 	}
 });
 
-Template.log.helpers({
+Template.login.helpers({
 	'selectedSignIn': function(){
 		var b = Session.get('selected_SignIn');
 		return b;
-	},
+	}
+});
+Template.logup.helpers({
 	'selectedSignUp': function(){
 		var b = Session.get('selected_SignUp');
 		return b;
@@ -98,7 +100,7 @@ Template.liste.events({
 		var selected_Colis = Session.get('selected_Colis');
 		CoListe.remove({_id : selected_Colis});
 	},
-	'click .logout': function(event){
+	'click .signout': function(event){
          		event.preventDefault();
 		Meteor.logout(function(error) {
             		if(error) {
@@ -108,7 +110,7 @@ Template.liste.events({
 	}
 });
 
-Template.log.events({
+Template.login.events({
 	'click .signin': function(){
 		var x = Session.get('selected_SignIn')
 		if (x!=undefined){
@@ -123,7 +125,9 @@ Template.log.events({
 			Session.set('selected_SignUp', undefined);
 			delete Session.keys.selected_SignUp;
 		}		
-	},
+	}
+});
+Template.logup.events({
 	'click .signup': function(){
 		var x = Session.get('selected_SignUp')
 		if (x!=undefined){
