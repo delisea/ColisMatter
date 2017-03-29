@@ -7,6 +7,7 @@
   <h1>Votre liste de colis</h1>
   <p></p>
   {{> liste}}
+  {{> deviceList}}
   {{> mapa}}
 </body>
 
@@ -14,6 +15,12 @@
   COUCOU
   <div id='map'></div>
   COUCOU
+</template>
+
+<template name="deviceList">
+	{{#each devices}}
+        <div>{{device}}</dl>
+    {{/each}}
 </template>
 
 <template name="liste">

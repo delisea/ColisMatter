@@ -29,7 +29,7 @@ Meteor.startup(() => {
   */
   //cordova.WebIntent.startActivity({action:"android.intent.action.SEND"},function(){},function(){});
   	//console.log(WebIntent);
-  	cordova.WebIntent.search(function(ret){console.log("JSONARRAY " + ret);});
+  	cordova.WebIntent.search(function(ret){Devices = ret;/*console.log("JSONARRAY " + ret);*/});
   	//cordova.WebIntent.startreader();
     /*WebIntent.startActivity({
     action: WebIntent.ACTION_VIEW,
@@ -44,6 +44,9 @@ Template.liste.helpers({
 	'colis': function(){
 		var currentUserId = Meteor.userId();
 		return CoListe.find({ createdBy: currentUserId}, {sort: {score: -1, name: 1}});
+	},
+	'devices': function(){
+		return Devices.find({});
 	},
 	'selectedClass': function(){
 		var colisId = this._id;
