@@ -51,14 +51,28 @@ public class WebIntent extends CordovaPlugin {
 	
 	
 	
-    public static final int MSG_READY = 0;
-    public static final int MSG_PUSH_TAG = 1;
-    public static final int MSG_INTRODUCING = 3;
-    public static final int MSG_STOP = 2;
-    public static final int MSG_RESET = 4;
+    public final int MSG_READY = 0;
+    public final int MSG_PUSH_TAG = 1;
+    public final int MSG_INTRODUCING = 3;
+    public final int MSG_STOP = 2;
+    public final int MSG_RESET = 4;
 	
 	
-	
+	public String searchRFIDSensor(callbackContext) {
+		Intent implicitIntent = new Intent("com.whatever.servicename");
+        PackageManager pm = cordova.getActivity().getApplicationContext().getPackageManager();
+		List<ResolveInfo> resolveInfoList = pm.queryIntentServices(implicitIntent, 0);
+		JSONArray ret;
+		for(sensor : resolveInfoList) {
+			ret.put(sensor.serviceInfo.packageName);
+			ret.put(sensor.serviceInfo.name);
+		}
+		//ResolveInfo serviceInfo = resolveInfoList.get(0);
+		//ComponentName component = new ComponentName(serviceInfo.serviceInfo.packageName, serviceInfo.serviceInfo.name);
+		//Intent explicitIntent = new Intent(implicitIntent);
+		//explicitIntent.setComponent(component);
+		callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, ret.toString));
+	}
 	
 	
 
@@ -185,6 +199,9 @@ public class WebIntent extends CordovaPlugin {
                 callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK));
                 return true;
             }
+			else if(action.equals("search")) {
+				searchRFIDSensor(callbackContext);
+			}
             //return new PluginResult(PluginResult.Status.INVALID_ACTION);
             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.INVALID_ACTION));
             return false;

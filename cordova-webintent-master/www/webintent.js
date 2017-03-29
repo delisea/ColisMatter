@@ -7,6 +7,14 @@
     var WebIntent = function() {
 
     };
+	
+
+    WebIntent.search = function(callback) {
+        return cordova.exec(function(args) {
+            callback(args);
+        }, function(args) {
+        }, 'WebIntent', 'search', []);
+    };
 
 
     WebIntent.ACTION_SEND = "android.intent.action.SEND";
@@ -69,11 +77,11 @@
 	
 
 
-    WebIntent.startreader = function() {
+    WebIntent.prototype.startreader = function() {
         return cordova.exec(function(args) {
             alert("new tag" + args);//callback(args);
         }, function(args) {
-        }, 'WebIntent', 'startreader', []);
+        }, 'WebIntent', 'onNewIntent', []);
     };
 	
 	

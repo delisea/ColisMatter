@@ -14,13 +14,13 @@ Meteor.startup(() => {
   console.log("grospenis");
   for(var i=0;i<10;i++) console.log(" ");
   if(Meteor.isCordova){
-  	console.log(WebIntent);
+  	//console.log(WebIntent);
   	console.log("coucou");
   	//sconsole.log(Grospenis);
-  	for(var propertyName in cordova.WebIntent){
+  	/*for(var propertyName in cordova.WebIntent){
   		console.log(propertyName);
   	}
-  	console.log("coucou2");
+  	console.log("coucou2");*/
   	/*cordova.exec(function(args) {
 		console.log("edoicezsdoxks");
         	}, function(args) {
@@ -29,7 +29,8 @@ Meteor.startup(() => {
   */
   //cordova.WebIntent.startActivity({action:"android.intent.action.SEND"},function(){},function(){});
   	//console.log(WebIntent);
-  	cordova.WebIntent.startreader();
+  	cordova.WebIntent.search(function(ret){console.log("JSONARRAY " + ret);});
+  	//cordova.WebIntent.startreader();
     /*WebIntent.startActivity({
     action: WebIntent.ACTION_VIEW,
     url: 'geo:37,-122'},
