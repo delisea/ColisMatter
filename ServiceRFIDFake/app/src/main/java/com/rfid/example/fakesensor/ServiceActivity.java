@@ -15,7 +15,7 @@
   IF YOU DO NOT AGREE OF THE TERMS OF THIS DISCLAIMER, DO NOT USE THE SOFTWARE.
 */
 
-package com.example.delise.myapplication;
+package com.rfid.example.fakesensor;
 
 import android.app.Activity;
 import android.os.Bundle;

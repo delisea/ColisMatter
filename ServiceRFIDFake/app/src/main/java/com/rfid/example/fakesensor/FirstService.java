@@ -1,4 +1,4 @@
-package com.example.delise.myapplication;
+package com.rfid.example.fakesensor;
 
 import android.app.Service;
 import android.content.Intent;

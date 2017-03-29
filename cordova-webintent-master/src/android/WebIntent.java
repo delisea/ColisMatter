@@ -47,6 +47,20 @@ import android.widget.TableRow;
  * 
  */
 public class WebIntent extends CordovaPlugin {
+	
+	
+	
+	
+    public static final int MSG_READY = 0;
+    public static final int MSG_PUSH_TAG = 1;
+    public static final int MSG_INTRODUCING = 3;
+    public static final int MSG_STOP = 2;
+    public static final int MSG_RESET = 4;
+	
+	
+	
+	
+	
 
     private CallbackContext onNewIntentCallbackContext = null;
 
