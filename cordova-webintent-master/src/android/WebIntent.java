@@ -35,6 +35,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TableRow;
 
+import java.util.List;
+import android.content.pm.ResolveInfo;
+
 /**
  * WebIntent is a PhoneGap plugin that bridges Android intents and web
  * applications:
@@ -58,12 +61,11 @@ public class WebIntent extends CordovaPlugin {
     public final int MSG_RESET = 4;
 	
 	
-	public String searchRFIDSensor(callbackContext) {
+	void searchRFIDSensor(CallbackContext  callbackContext) {
 		Intent implicitIntent = new Intent("com.whatever.servicename");
-        PackageManager pm = cordova.getActivity().getApplicationContext().getPackageManager();
-		List<ResolveInfo> resolveInfoList = pm.queryIntentServices(implicitIntent, 0);
-		JSONArray ret;
-		for(sensor : resolveInfoList) {
+		List<ResolveInfo> resolveInfoList = cordova.getActivity().getApplicationContext().getPackageManager().queryIntentServices(implicitIntent, 0);
+		JSONArray ret = new JSONArray();
+		for(ResolveInfo sensor : resolveInfoList) {
 			ret.put(sensor.serviceInfo.packageName);
 			ret.put(sensor.serviceInfo.name);
 		}
@@ -71,7 +73,7 @@ public class WebIntent extends CordovaPlugin {
 		//ComponentName component = new ComponentName(serviceInfo.serviceInfo.packageName, serviceInfo.serviceInfo.name);
 		//Intent explicitIntent = new Intent(implicitIntent);
 		//explicitIntent.setComponent(component);
-		callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, ret.toString));
+		callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, ret.toString()));
 	}
 	
 	
