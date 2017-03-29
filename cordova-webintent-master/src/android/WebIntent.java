@@ -36,6 +36,7 @@ import android.widget.Button;
 import android.widget.TableRow;
 
 import java.util.List;
+import java.util.ArrayList;
 import android.content.pm.ResolveInfo;
 
 /**
@@ -61,10 +62,12 @@ public class WebIntent extends CordovaPlugin {
 		}
 		
 		public Intent intent() {
-			Intent it = new Intent(Service_Intent);
-			ComponentName component = new ComponentName(serviceInfo.serviceInfo.packageName, serviceInfo.serviceInfo.name);
-			explicitIntent.setComponent(component);
-			return explicitIntent;
+			//Intent it = new Intent(Service_Intent);
+			//ComponentName component = new ComponentName(serviceInfo.serviceInfo.packageName, serviceInfo.serviceInfo.name);
+			//explicitIntent.setComponent(component);
+                                    Intent inte = new Intent(Service_Intent);
+                                    inte.setPackage(_packageName);
+			return inte;
 		}
 	}
 	
@@ -76,15 +79,16 @@ public class WebIntent extends CordovaPlugin {
     public final int MSG_STOP = 2;
     public final int MSG_RESET = 4;
 	
-	private List<Device> devices = new List<>();
+	private List<Device> devices = new ArrayList<Device>();
 	
 	void searchRFIDSensor(CallbackContext  callbackContext) {
 		Intent implicitIntent = new Intent(Service_Intent);
 		List<ResolveInfo> resolveInfoList = cordova.getActivity().getApplicationContext().getPackageManager().queryIntentServices(implicitIntent, 0);
 		JSONArray ret = new JSONArray();
 		for(ResolveInfo sensor : resolveInfoList) {
-			devices.add(new Device(sensor.serviceInfo.packageName, sensor.serviceInfo.name);
+			devices.add(new Device(sensor.serviceInfo.packageName, sensor.serviceInfo.name));
 			ret.put(sensor.serviceInfo.name);
+                                    Log.d(null, sensor.serviceInfo.name);
 		}
 		//ResolveInfo serviceInfo = resolveInfoList.get(0);
 		//ComponentName component = new ComponentName(serviceInfo.serviceInfo.packageName, serviceInfo.serviceInfo.name);

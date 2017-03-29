@@ -11,6 +11,14 @@ import './main.html';
 
 Meteor.startup(() => {
   // code to run on server at startup
+  	Meteor.call('removeAllPosts');
+  	//Devices.remove({});
+  	Devices.insert({name: "name"});
+  	//Devices.insert({name: "name2"});
+  	//Devices.insert({name: "name3"});
+  	//for(truck in Devices)
+  	//	console.log(truck);
+  	console.log(Devices.find({}).fetch());
   console.log("grospenis");
   for(var i=0;i<10;i++) console.log(" ");
   if(Meteor.isCordova){
@@ -29,7 +37,19 @@ Meteor.startup(() => {
   */
   //cordova.WebIntent.startActivity({action:"android.intent.action.SEND"},function(){},function(){});
   	//console.log(WebIntent);
-  	cordova.WebIntent.search(function(ret){Devices = ret;/*console.log("JSONARRAY " + ret);*/});
+  	//Devices.insert({name: "name"});
+  	cordova.WebIntent.search(function(ret){/*for(dev in ret) Devices.insert({name: dev});*/console.log("JSONARRAY " + ret);
+  		/*console.log(ret[1]);
+  		console.log(JSON.parse(ret));
+  		console.log(JSON.parse(ret)[0]);*/
+  		//console.log(JSON.parse(ret));
+  		//console.log(typeof JSON.parse(ret));
+  		var t = JSON.parse(ret);
+  		for(var i  in t) {
+  			//console.log(t[i]);
+  			Devices.insert({name: t[i]});
+  		}
+  	});
   	//cordova.WebIntent.startreader();
     /*WebIntent.startActivity({
     action: WebIntent.ACTION_VIEW,
@@ -40,13 +60,23 @@ Meteor.startup(() => {
 	}
 });
 
+Template.deviceList.helpers({
+	'devices': function(){
+		return Devices.find({});
+	}
+});
+
+Template.deviceList.events({
+	'click .ONdevice': function(){
+		event.target.innerHTML = "Initialization";
+		console.log(event.target.value);
+	}
+});
+
 Template.liste.helpers({
 	'colis': function(){
 		var currentUserId = Meteor.userId();
 		return CoListe.find({ createdBy: currentUserId}, {sort: {score: -1, name: 1}});
-	},
-	'devices': function(){
-		return Devices.find({});
 	},
 	'selectedClass': function(){
 		var colisId = this._id;
