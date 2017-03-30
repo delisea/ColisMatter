@@ -69,6 +69,10 @@ public class WebIntent extends CordovaPlugin {
                                     inte.setPackage(_packageName);
 			return inte;
 		}
+		
+		public String name() {
+			return _name;
+		}
 	}
 	
 	private final String Service_Intent = "com.whatever.servicename";
@@ -289,14 +293,27 @@ public class WebIntent extends CordovaPlugin {
         ((CordovaActivity)this.cordova.getActivity()).sendBroadcast(intent);
     }
     
-        
-    void RFID_service_start(CallbackContext clbr) {
+    void RFID_service_start(CallbackContext clbr, String name) {
+		Intent inte = null;
+		for(Device dev : devices) {
+			if(name.equals(dev.name)) {
+				inte = dev.intent();
+				break;
+			}
+		}
+		if(inte == null)
+			callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.INVALID_ACTION));
+    	CallBack_READ = clbr;
+        cordova.getActivity().getApplicationContext().startService(inte);
+        cordova.getActivity().getApplicationContext().bindService(inte, networkServiceConnection, Context.BIND_AUTO_CREATE);
+    }
+    /*void RFID_service_start(CallbackContext clbr) {
     	CallBack_READ = clbr;
     	Intent inte = new Intent("com.whatever.servicename");
         inte.setPackage("com.example.delise.myapplication");
         cordova.getActivity().getApplicationContext().startService(inte);
         cordova.getActivity().getApplicationContext().bindService(inte, networkServiceConnection, Context.BIND_AUTO_CREATE);
-    }
+    }*/
     private ServiceConnection mConnection = new ServiceConnection() {
 
         //FirstService mService;
