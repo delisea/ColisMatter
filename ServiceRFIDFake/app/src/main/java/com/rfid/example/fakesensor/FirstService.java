@@ -2,6 +2,7 @@ package com.rfid.example.fakesensor;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -63,7 +64,7 @@ public class FirstService extends Service   {
     private void notify_clients(int MSG, String Param) {
         for (int i = 0; i < clients.size(); i++) {
             try {
-                clients.get(i).send(Message.obtain(null, MSG, new Parcelable(){
+                /*clients.get(i).send(Message.obtain(null, MSG, new Parcelable(){
                     String _param;
                     public Parcelable set(String param){
                         _param = param;
@@ -78,7 +79,12 @@ public class FirstService extends Service   {
                     public void writeToParcel(Parcel dest, int flags) {
                         dest.writeString(_param);
                     }
-                }.set(Param)));
+                }.set(Param)));*/
+                Bundle bd = new Bundle();
+                bd.putString("data", Param);
+                Message mess =Message.obtain(null, MSG, null);
+                mess.setData(bd);
+                clients.get(i).send(mess);
             } catch (RemoteException e) {
                 Log.d(null, "Removing client: " + clients.get(i));
                 clients.remove(i);

@@ -202,6 +202,7 @@ public class WebIntent extends CordovaPlugin {
                     return false;
                 }
             	RFID_service_start(callbackContext, args.getString(0));
+                return true;
             } else if (action.equals("sendBroadcast")) 
             {
                 if (args.length() != 1) {
@@ -231,9 +232,10 @@ public class WebIntent extends CordovaPlugin {
                 callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK));
                 return true;
             }
-			else if(action.equals("search")) {
-				searchRFIDSensor(callbackContext);
-			}
+	else if(action.equals("search")) {
+		searchRFIDSensor(callbackContext);
+                        return true;
+	}
             //return new PluginResult(PluginResult.Status.INVALID_ACTION);
             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.INVALID_ACTION));
             return false;
@@ -351,9 +353,11 @@ public class WebIntent extends CordovaPlugin {
                     Log.d(null, "READY");
                 break;
                 case 1://RFID Service PUSH #TAG
-                    Log.d(null, "PUSH TAG: " + msg.obj.toString());
+                    Bundle bundle = msg.getData();
+                    String data = bundle.getString("data");
+                    Log.d(null, "PUSH TAG: " + data);
                      if (CallBack_READ != null) {
-						PluginResult result = new PluginResult(PluginResult.Status.OK, msg.obj.toString());
+						PluginResult result = new PluginResult(PluginResult.Status.OK, data);
 						result.setKeepCallback(true);
 						CallBack_READ.sendPluginResult(result);
 					 }
