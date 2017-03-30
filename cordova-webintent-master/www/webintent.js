@@ -78,10 +78,11 @@
 
 
     WebIntent.startreader = function(callback, name) {
+        console.log("ici"+name);
         return cordova.exec(function(args) {
             callback(args);//alert("new tag" + args);//callback(args);
         }, function(args) {
-        }, 'WebIntent', 'onNewIntent', [name]);
+        }, 'WebIntent', 'startreader', [name]);
     };
 	
 	

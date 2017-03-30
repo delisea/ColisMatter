@@ -6,6 +6,8 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.os.RemoteException;
 import android.util.Log;
 
@@ -58,10 +60,25 @@ public class FirstService extends Service   {
         }
     }
 
-    private void notify_clients(int MSG, Object Param) {
+    private void notify_clients(int MSG, String Param) {
         for (int i = 0; i < clients.size(); i++) {
             try {
-                clients.get(i).send(Message.obtain(null, MSG, Param));
+                clients.get(i).send(Message.obtain(null, MSG, new Parcelable(){
+                    String _param;
+                    public Parcelable set(String param){
+                        _param = param;
+                        return this;
+                    }
+                    @Override
+                    public int describeContents() {
+                        return 0;
+                    }
+
+                    @Override
+                    public void writeToParcel(Parcel dest, int flags) {
+                        dest.writeString(_param);
+                    }
+                }.set(Param)));
             } catch (RemoteException e) {
                 Log.d(null, "Removing client: " + clients.get(i));
                 clients.remove(i);

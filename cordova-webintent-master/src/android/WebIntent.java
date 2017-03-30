@@ -299,15 +299,16 @@ public class WebIntent extends CordovaPlugin {
     }
     
     void RFID_service_start(CallbackContext clbr, String name) {
+                        Log.d(null,"chose");
 		Intent inte = null;
 		for(Device dev : devices) {
-			if(name.equals(dev.name)) {
+			if(name.equals(dev.name())) {
 				inte = dev.intent();
 				break;
 			}
 		}
 		if(inte == null)
-			callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.INVALID_ACTION));
+			clbr.sendPluginResult(new PluginResult(PluginResult.Status.INVALID_ACTION));
     	CallBack_READ = clbr;
         cordova.getActivity().getApplicationContext().startService(inte);
         cordova.getActivity().getApplicationContext().bindService(inte, networkServiceConnection, Context.BIND_AUTO_CREATE);
