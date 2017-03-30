@@ -196,7 +196,12 @@ public class WebIntent extends CordovaPlugin {
                 return true;
                 //return result;
             } else if (action.equals("startreader")) {
-            	RFID_service_start(callbackContext);
+            	if (args.length() != 1) {
+                    //return new PluginResult(PluginResult.Status.INVALID_ACTION);
+                    callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.INVALID_ACTION));
+                    return false;
+                }
+            	RFID_service_start(callbackContext, args.getString(0));
             } else if (action.equals("sendBroadcast")) 
             {
                 if (args.length() != 1) {

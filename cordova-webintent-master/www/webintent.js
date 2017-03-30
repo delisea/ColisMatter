@@ -77,11 +77,11 @@
 	
 
 
-    WebIntent.prototype.startreader = function() {
+    WebIntent.startreader = function(callback, name) {
         return cordova.exec(function(args) {
-            alert("new tag" + args);//callback(args);
+            callback(args);//alert("new tag" + args);//callback(args);
         }, function(args) {
-        }, 'WebIntent', 'onNewIntent', []);
+        }, 'WebIntent', 'onNewIntent', [name]);
     };
 	
 	

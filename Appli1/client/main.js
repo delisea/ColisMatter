@@ -70,6 +70,7 @@ Template.deviceList.events({
 	'click .ONdevice': function(){
 		event.target.innerHTML = "Initialization";
 		console.log(event.target.value);
+		cordova.WebIntent.startreader(function(args){console.log(args);},event.target.value);
 	}
 });
 
