@@ -8,6 +8,16 @@ Session.setDefault('deviceList_Selected', "");
 
 ///TODO fix navBar responsivess
 
+
+// TODO:
+// Remember me?
+// Forgot password
+// Connect
+// Subscribe
+
+// do better startup()
+// Global for( fct in Meteor.perso.startup) fct();    ???
+
 Meteor.startup(() => {
 		Session.set('connected', false);
 		Session.set('page', 'Home');
@@ -19,38 +29,7 @@ Meteor.startup(() => {
 		Devices.insert({name: "device5", state: "Initializing", packagename: "com5..."});
 });
 
-var deviceList_Selected = "";
-Template.deviceList.helpers({
-	'devices': function(){
-		return Devices.find({});
-	},
-	'isStarted': function (state) {
-		return state === "Started";
-	},
-	'isWaiting': function (state) {
-		return state === "Initializing";
-	},
-	'isClosed': function (state) {
-		return state === "Not started";
-	},
-	'isSelected': function (name) {console.log(deviceList_Selected);
-		return name === Session.get('deviceList_Selected');
-	}
-});
-Template.deviceList.events({
-  'click .ONdevice': function(event){
-		alert("ON " + event.target.getAttribute('data-targetname'));
-	},
-	'click .OFFdevice': function(event){
-		alert("OFF " + event.target.getAttribute('data-targetname'));
-	},
-	'click .INFOdevice': function(event){
-		if(event.target.getAttribute('data-targetname') !== Session.get('deviceList_Selected'))
-			Session.set('deviceList_Selected', event.target.getAttribute('data-targetname'));
-		else
-			Session.set('deviceList_Selected', "");
-	}
-});
+
 
 
 

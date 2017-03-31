@@ -2,6 +2,7 @@ Template.registerHelper( 'isConnected', (page) => {
   return Session.get('connected');
 });
 
+
 $(function() {
 
     $('#login-form-link').click(function(e) {
@@ -19,4 +20,13 @@ $(function() {
 		e.preventDefault();
 	});
 
+});
+
+Template.connectform.events({
+	'submit form': function(e){
+		e.preventDefault();
+		var username = e.target.username.value;
+		var mdp = e.target.password.value;
+		Session.set('connected', true);
+	}
 });
