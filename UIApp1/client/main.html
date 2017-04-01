@@ -19,7 +19,11 @@
 {{#if isPage "Devices"}}
 {{> deviceList}}
 {{else}}
+{{#if isPage "Colis"}}
 {{> coList}}
+{{else}}
+{{> homeTemplate}}
+{{/if}}
 {{/if}}
 
 {{else}}

@@ -6,6 +6,8 @@
 }
 	
 body {
+	padding-left: 0;
+	padding-right: 0;
 	font-family: 'Open Sans', sans-serif;
 	color: #353535;
 }
@@ -54,9 +56,9 @@ body {
 .table-filter tr td:first-child {
 	width: 38px;
 }
-.table-filter tr td:nth-child(2) {
+/*.table-filter tr td:nth-child(2) {
 	width: 35px;
-}
+}*/
 .ckbox {
 	position: relative;
 }

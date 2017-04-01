@@ -1,0 +1,59 @@
+<template name="homeTemplate">
+<style>
+body {
+	padding-left:0;
+	padding-right:0;
+}
+.media-photo {
+border: 5px solid #ad7343;/*63cdf4*/
+border-radius: 50%;
+/*height: 120px;
+left: 125px;*/
+/*position: absolute;
+top: -25px;
+width: 120px;*/
+
+background:transparent url('https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg') no-repeat center center /cover;
+}
+.header-home {
+	border-bottom-right-radius: 20%;
+}
+.table{
+    display:table;
+    height:100%;
+    width:100%;
+}
+.table-cell{
+    display:table-cell;
+    vertical-align:middle;
+    height:100%;
+    width:100%;
+}
+.square {
+    float:left;
+    position: relative;
+    width: 30%;
+    padding-bottom : 30%; /* = width for a 1:1 aspect ratio */
+    margin:1.66%;
+    overflow:hidden;
+}
+
+.summary {
+	font-size: 3vw;
+}
+</style>
+	<div class="table">
+		<div class="row table-cell alert alert-info header-home">
+			<div class="square media-photo">
+				<!--img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo" 20px-->
+			</div>
+			<div class="col-xs-8">
+				 <h2 style="font-size: 4vw;" class="label label-primary">Polytech'Grenoble</h2>
+					<p class="summary">
+						Saint Martin d'hères<br />
+						Devices OK: 2
+					</p>
+			</div>
+		</div>
+	</div>
+</template>
