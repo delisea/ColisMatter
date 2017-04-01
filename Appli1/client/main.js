@@ -107,6 +107,13 @@ Template.liste.events({
                			console.log("ERROR: " + error.reason);
             		}
          		});
+        Meteor.call(
+  'sendEmail',
+  'amodrufavin.hugo@gmail.com',
+  'antoinedelise976@hotmail.fr',
+  'Mail envoyé par appli Meteor',
+  'grospenis'
+);
 	}
 });
 
@@ -125,7 +132,15 @@ Template.login.events({
 			Session.set('selected_SignUp', undefined);
 			delete Session.keys.selected_SignUp;
 		}		
-	}
+	},
+      'submit form': function(event){
+        event.preventDefault();
+        var pseudo = $('[name=pseudo]').val();
+        var password = $('[name=pwd]').val();
+        Meteor.loginWithPassword(pseudo, password, function(error){
+          console.log(error);
+        });
+      }
 });
 Template.logup.events({
 	'click .signup': function(){
@@ -143,6 +158,20 @@ Template.logup.events({
 			delete Session.keys.selected_SignIn;
 		}
 	},
+      'submit form': function(event){
+        event.preventDefault();
+        var username = $('[name=pseudo]').val();
+        var email = $('[name=email]').val();
+        var password = $('[name=pwd]').val();
+        var password2 = $('[name=pwd2]').val();
+        if(password == password2){
+          Accounts.createUser({
+            username: username,
+            email: email,
+            password: password
+          },function(error){if(error)console.log(error);});
+        }
+      }
 });
 Template.addColisForm.events({
 	'submit form': function(e){
