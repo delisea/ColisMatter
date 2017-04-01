@@ -1,11 +1,13 @@
 <template name="homeTemplate">
 <style>
-body {
+html, body {
 	padding-left:0;
 	padding-right:0;
+	padding-bottom:0;
+	height: 100%;
 }
 .media-photo {
-border: 5px solid #ad7343;/*63cdf4*/
+/*border: 5px solid #ad7343;*//*63cdf4*/
 border-radius: 50%;
 /*height: 120px;
 left: 125px;*/
@@ -20,20 +22,23 @@ background:transparent url('https://s3.amazonaws.com/uifaces/faces/twitter/fffab
 }
 .table{
     display:table;
-    height:100%;
+    /*height:100%;*/
+	position: absolute;
     width:100%;
+	z-index:1;
 }
 .table-cell{
     display:table-cell;
     vertical-align:middle;
     height:100%;
     width:100%;
+	padding: 0;
 }
 .square {
     float:left;
     position: relative;
-    width: 30%;
-    padding-bottom : 30%; /* = width for a 1:1 aspect ratio */
+    width: 15%;
+    padding-bottom : 15%; /* = width for a 1:1 aspect ratio */
     margin:1.66%;
     overflow:hidden;
 }
@@ -41,6 +46,13 @@ background:transparent url('https://s3.amazonaws.com/uifaces/faces/twitter/fffab
 .summary {
 	font-size: 3vw;
 }
+
+#map {
+	height: 100%;
+    min-height: 100%;
+    min-width: 100%;
+	z-index:0;
+  }
 </style>
 	<div class="table">
 		<div class="row table-cell alert alert-info header-home">
@@ -56,4 +68,5 @@ background:transparent url('https://s3.amazonaws.com/uifaces/faces/twitter/fffab
 			</div>
 		</div>
 	</div>
+	<div id='map'></div>
 </template>

@@ -27,6 +27,9 @@ Meteor.startup(() => {
 		Devices.insert({name: "device3", state: "Not started", packagename: "com3..."});
 		Devices.insert({name: "device4", state: "Not started", packagename: "com4..."});
 		Devices.insert({name: "device5", state: "Initializing", packagename: "com5..."});
+		
+		CoListe.insert({name: "ArduinoPackage", state: "Treatment", lastX: 52.9, lastY: 56.4});
+		CoListe.insert({name: "AnotherPackage", state: "Treatment", lastX: 56.4, lastY: 59.6});
 });
 
 
