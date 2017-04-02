@@ -1,0 +1,48 @@
+<template name="navBar">
+<style>
+/*@media (min-height: 500px) {  */
+	.co-navbar-fixed-top {
+		position: fixed;
+		right: 0;
+		left: 0;
+		z-index: 1030;
+		top: 0;
+		border-width: 0 0 1px;
+	}
+/*}*/
+	.navbar {
+		height: 50px;
+		margin-bottom: 20px;
+		border: 1px solid transparent;
+	}
+</style>
+<nav class="navbar navbar-default co-navbar-fixed-top">
+	<!--<div class="row">
+		<div class="col-xs-4 col-sm-4">
+			coucou
+		</div>
+		<div class="col-xs-4 col-sm-4">
+			coucou
+		</div>
+		<div class="col-xs-4 col-sm-4">
+			coucou
+		</div>
+	</div>-->
+	<div class="container-fluid row">
+    <div class="navbar-header col-xs-3 col-sm-3">
+      <a class="navbar-brand navLink" href="#Home" data-targetname="Home">Collismatter</a>
+    </div>
+	{{#if currentUser}}
+    <ul class="nav navbar-nav col-xs-9 col-sm-9 row">
+      {{#each objectInArray}}
+      	<li class="{{#if isPage name}}active{{/if}} col-xs-3 col-sm-3"><a class="navLink" href="#{{name}}" data-targetname="{{name}}">{{name}}</a></li>
+	  {{/each}}
+    </ul>
+	{{else}}
+	<!--<div style="text-align: center" class="navbar-brand col-xs-8 col-sm-8">
+		Connection
+	</div>-->
+	{{/if}}
+  </div>
+</nav>
+</template>

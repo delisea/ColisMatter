@@ -1,0 +1,153 @@
+<template name="deviceList">
+<!--div style="font-size:2em;" class="list-group"-->
+<div class="list-group">
+
+<style>
+.deviceRow [class*=col] { overflow: hidden; }
+
+@media (max-width: 443px) {  
+	.deviceRow {font-size:1.5rem;} /*1rem = 16px*/
+	.deviceRow .glyphicon {font-size:3rem;} /*1rem = 16px*/
+}
+@media (min-width: 444px) and (max-width: 799px) {  
+	.deviceRow {font-size:2rem;} /*1rem = 16px*/
+	.deviceRow .glyphicon {font-size:4rem;} /*1rem = 16px*/
+}
+@media (min-width: 800px) {  
+	.deviceRow {font-size:2.5rem;} /*1rem = 16px*/
+	.deviceRow .glyphicon {font-size:4.5rem;} /*1rem = 16px*/
+}
+</style>
+	
+	{{#each devices}}
+		{{#if isStarted state}}
+		<div class="alert alert-success">
+		<div class="row deviceRow">
+			<div class="col-xs-4 col-sm-4">
+			{{name}}
+			</div>
+			<div class="col-xs-4 col-sm-4">
+			{{state}}
+			</div>
+			<div class="col-xs-4 col-sm-4">
+				<span style="float: right;">
+					<span class="OFFdevice glyphicon glyphicon-remove-sign text-danger" style="cursor: pointer;" data-targetname="{{name}}"></span>
+					<span class="INFOdevice glyphicon glyphicon-info-sign text-info" style="cursor: pointer;" data-targetname="{{name}}"></span>
+				</span>
+			</div>
+		</div>
+		{{#if isSelected name}}
+		<div class="row deviceRow">
+			<div class="col-xs-12 col-sm-3"></div>
+			<div class="col-xs-4 col-sm-3" style="box-shadow: inset 1px 1px 0 0, inset -1px -1px 0 0;">
+			name
+			</div>
+			<div class="col-xs-8 col-sm-3" style="box-shadow: inset 1px 1px 0 0, inset -1px -1px 0 0;">
+			{{name}}
+			</div>
+			<div class="hidden-xs col-sm-3"></div>
+		</div>
+		<div class="row deviceRow">
+			<div class="hidden-xs col-sm-3"></div>
+			<div class="col-xs-4 col-sm-3" style="box-shadow: inset 1px 1px 0 0, inset -1px -1px 0 0;">
+			packagename
+			</div>
+			<div class="col-xs-8 col-sm-3" style="box-shadow: inset 1px 1px 0 0, inset -1px -1px 0 0;">
+			{{packagename}}
+			</div>
+			<div class="hidden-xs col-sm-3"></div>
+		</div>
+		{{/if}}
+		</div>
+		
+		
+		
+		{{else}}
+		{{#if isWaiting state}}
+		<div class="alert alert-warning">
+		<div class="row deviceRow">
+			<div class="col-xs-4 col-sm-4">
+			{{name}}
+			</div>
+			<div class="col-xs-4 col-sm-4">
+			{{state}}
+			</div>
+			<div class="col-xs-4 col-sm-4">
+				<span style="float: right;">
+					<span class="OFFdevice glyphicon glyphicon-remove-sign text-danger" style="cursor: pointer;" data-targetname="{{name}}"></span>
+					<span class="INFOdevice glyphicon glyphicon-info-sign text-info" style="cursor: pointer;" data-targetname="{{name}}"></span>
+				</span>
+			</div>
+		</div>
+		{{#if isSelected name}}
+		<div class="row deviceRow">
+			<div class="col-xs-12 col-sm-3"></div>
+			<div class="col-xs-4 col-sm-3" style="box-shadow: inset 1px 1px 0 0, inset -1px -1px 0 0;">
+			name
+			</div>
+			<div class="col-xs-8 col-sm-3" style="box-shadow: inset 1px 1px 0 0, inset -1px -1px 0 0;">
+			{{name}}
+			</div>
+			<div class="hidden-xs col-sm-3"></div>
+		</div>
+		<div class="row deviceRow">
+			<div class="hidden-xs col-sm-3"></div>
+			<div class="col-xs-4 col-sm-3" style="box-shadow: inset 1px 1px 0 0, inset -1px -1px 0 0;">
+			packagename
+			</div>
+			<div class="col-xs-8 col-sm-3" style="box-shadow: inset 1px 1px 0 0, inset -1px -1px 0 0;">
+			{{packagename}}
+			</div>
+			<div class="hidden-xs col-sm-3"></div>
+		</div>
+		{{/if}}
+		</div>
+		
+		
+		
+		{{else}}
+		<div class="alert alert-info">
+		<div class="row deviceRow">
+			<div class="col-xs-4 col-sm-4">
+			{{name}}
+			</div>
+			<div class="col-xs-4 col-sm-4">
+			{{state}}
+			</div>
+			<div class="col-xs-4 col-sm-4">
+				<span style="float: right;">
+					<span class="ONdevice glyphicon glyphicon-ok-sign text-success" style="cursor: pointer;" data-targetname="{{name}}"></span>
+					<span class="INFOdevice glyphicon glyphicon-info-sign text-info" style="cursor: pointer;" data-targetname="{{name}}"></span>
+				</span>
+			</div>
+		</div>
+		{{#if isSelected name}}
+		<div class="row deviceRow">
+			<div class="col-xs-12 col-sm-3"></div>
+			<div class="col-xs-4 col-sm-3" style="box-shadow: inset 1px 1px 0 0, inset -1px -1px 0 0;">
+			name
+			</div>
+			<div class="col-xs-8 col-sm-3" style="box-shadow: inset 1px 1px 0 0, inset -1px -1px 0 0;">
+			{{name}}
+			</div>
+			<div class="hidden-xs col-sm-3"></div>
+		</div>
+		<div class="row deviceRow">
+			<div class="hidden-xs col-sm-3"></div>
+			<div class="col-xs-4 col-sm-3" style="box-shadow: inset 1px 1px 0 0, inset -1px -1px 0 0;">
+			packagename
+			</div>
+			<div class="col-xs-8 col-sm-3" style="box-shadow: inset 1px 1px 0 0, inset -1px -1px 0 0;">
+			{{packagename}}
+			</div>
+			<div class="hidden-xs col-sm-3"></div>
+		</div>
+		{{/if}}
+		</div>
+		{{/if}}
+		{{/if}}
+	{{else}}
+	no item
+    {{/each}}
+</div>
+</template>

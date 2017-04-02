@@ -1,0 +1,76 @@
+<template name="homeTemplate">
+<style>
+html, body {
+	padding-left:0;
+	padding-right:0;
+	padding-bottom:0;
+	height: 100%;
+}
+
+
+.media-photo {
+/*border: 5px solid #ad7343;*//*63cdf4*/
+border-radius: 50%;
+/*height: 120px;
+left: 125px;*/
+/*position: absolute;
+top: -25px;
+width: 120px;*/
+
+background:transparent url('https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg') no-repeat center center /cover;
+}
+.header-home {
+	/*border-bottom-right-radius: 20%;*/
+}
+.table{
+    border: 0;
+    width: 100%;
+	margin: 0;
+    /*position: absolute;*/
+    z-index: 1000;
+}
+
+.table-cell{
+    display:table-cell;
+    vertical-align:middle;
+    height:100%;
+    width:100%;
+	padding: 0;
+}
+.square {
+    float:left;
+    position: relative;
+    width: 10vh;
+	height: 10vh;
+    /*padding-bottom : 15%;  = width for a 1:1 aspect ratio */
+    margin:1.66%;
+    overflow:hidden;
+}
+
+.summary {
+	font-size: 3vh;
+}
+
+#map {
+	height: 100%;
+    min-height: 100%;
+    min-width: 100%;
+	z-index:0;
+  }
+</style>
+		<table class="table alert alert-info header-home">
+		  <col width="10vh">
+		<tr>
+			<td class="table-cell square media-photo">
+				<!--img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo" 20px-->
+			</td>
+			<td class="table-cell" style="padding-top: 5px; padding-left: 5px;">
+				 <h2 style="font-size: 4vh;" class="label label-primary">Polytech'Grenoble</h2>
+					<p class="summary" style="padding-top: 5px;">
+						Saint Martin d'hères<br />
+						Devices OK: 2
+					</p>
+			</td>
+		</tr></table>
+	<div id='map'></div>
+</template>
