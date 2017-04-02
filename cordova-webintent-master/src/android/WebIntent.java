@@ -351,6 +351,18 @@ public class WebIntent extends CordovaPlugin {
             switch (msg.what) {
                 case 0://RFID Service READY
                     Log.d(null, "READY");
+					JSONObject ret = Json.createObjectBuilder()
+						 .add("name", msg.getFrom().toString())
+						 .add("packageName", "Smith")
+						 .add("type", "status")
+						 .add("value", "READY")
+						 .build();
+                    Log.d(null, "PUSH TAG: " + data);
+                     if (CallBack_READ != null) {
+						PluginResult result = new PluginResult(PluginResult.Status.OK, ret.toString());
+						result.setKeepCallback(true);
+						CallBack_READ.sendPluginResult(result);
+					 }
                 break;
                 case 1://RFID Service PUSH #TAG
                     Bundle bundle = msg.getData();
@@ -358,6 +370,7 @@ public class WebIntent extends CordovaPlugin {
 					JSONObject ret = Json.createObjectBuilder()
 						 .add("name", msg.getFrom().toString())
 						 .add("packageName", "Smith")
+						 .add("type", "data")
 						 .add("value", data)
 						 .build();
                     Log.d(null, "PUSH TAG: " + data);
@@ -369,6 +382,18 @@ public class WebIntent extends CordovaPlugin {
                 break;
                 case 2://RFID Service STOPPED
                     Log.d(null, "STOPPED");
+					JSONObject ret = Json.createObjectBuilder()
+						 .add("name", msg.getFrom().toString())
+						 .add("packageName", "Smith")
+						 .add("type", "status")
+						 .add("value", "STOPPED")
+						 .build();
+                    Log.d(null, "PUSH TAG: " + data);
+                     if (CallBack_READ != null) {
+						PluginResult result = new PluginResult(PluginResult.Status.OK, ret.toString());
+						result.setKeepCallback(true);
+						CallBack_READ.sendPluginResult(result);
+					 }
                     break;
                 case 3://RFID Service INTRODUCING
                     Log.d(null, "INTRODUCE" + msg.obj.toString());
