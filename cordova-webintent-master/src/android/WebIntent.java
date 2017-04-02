@@ -356,16 +356,37 @@ public class WebIntent extends CordovaPlugin {
             switch (msg.what) {
                 case 0://RFID Service READY
                     Log.d(null, "READY");
+					JSONObject ret = Json.createObjectBuilder()
+						 .add("name", msg.getFrom().toString())
+						 .add("packageName", "Smith")
+						 .add("type", "status")
+						 .add("value", "READY")
+						 .build();
+                    Log.d(null, "PUSH TAG: " + data);
+                     if (CallBack_READ != null) {
+						PluginResult result = new PluginResult(PluginResult.Status.OK, ret.toString());
+						result.setKeepCallback(true);
+						CallBack_READ.sendPluginResult(result);
+					 }
                 break;
                 case 1://RFID Service PUSH #TAG
                     Bundle bundle = msg.getData();
                     String data = bundle.getString("data");
+<<<<<<< HEAD
 		JSONObject ret = new JSONObject(); 
 						 //ret.put("name", msg.getFrom().toString());
 		try{				
                          ret.put("packageName", "Smith");
 		 ret.put("value", data);
         }catch(JSONException e){};
+=======
+					JSONObject ret = Json.createObjectBuilder()
+						 .add("name", msg.getFrom().toString())
+						 .add("packageName", "Smith")
+						 .add("type", "data")
+						 .add("value", data)
+						 .build();
+>>>>>>> d679defefa0c2dcdbffbebb5ac9b4a39bf313959
                     Log.d(null, "PUSH TAG: " + data);
                      if (CallBack_READ != null) {
 						PluginResult result = new PluginResult(PluginResult.Status.OK, ret.toString());
@@ -375,6 +396,18 @@ public class WebIntent extends CordovaPlugin {
                 break;
                 case 2://RFID Service STOPPED
                     Log.d(null, "STOPPED");
+					JSONObject ret = Json.createObjectBuilder()
+						 .add("name", msg.getFrom().toString())
+						 .add("packageName", "Smith")
+						 .add("type", "status")
+						 .add("value", "STOPPED")
+						 .build();
+                    Log.d(null, "PUSH TAG: " + data);
+                     if (CallBack_READ != null) {
+						PluginResult result = new PluginResult(PluginResult.Status.OK, ret.toString());
+						result.setKeepCallback(true);
+						CallBack_READ.sendPluginResult(result);
+					 }
                     break;
                 case 3://RFID Service INTRODUCING
                     Log.d(null, "INTRODUCE" + msg.obj.toString());
