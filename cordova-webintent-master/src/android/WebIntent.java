@@ -55,10 +55,14 @@ public class WebIntent extends CordovaPlugin {
 	protected class Device {
 		protected String _packageName;
 		protected String _name;
+                        public Messenger msg;
 		
 		public Device(String packageName, String name) {
 			_packageName = packageName;
 			_name = name;
+                                    msg = new Messenger(new IncomingHandler(name));
+;
+
 		}
 		
 		public Intent intent() {
@@ -348,36 +352,27 @@ public class WebIntent extends CordovaPlugin {
     };
 
     private static CallbackContext CallBack_READ = null;
-    Messenger messenger = new Messenger(new IncomingHandler());
 
     private static class IncomingHandler extends Handler {
+        String target;
+
+        public IncomingHandler(String trg){
+            super();
+            target = trg;
+        }
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 0://RFID Service READY
                     Log.d(null, "READY");
-                    /*
-					JSONObject ret = Json.createObjectBuilder()
-						 .add("name", msg.getFrom().toString())
-						 .add("packageName", "Smith")
-						 .add("type", "status")
-						 .add("value", "READY")
-						 .build();
-                         */
-                    Log.d(null, "PUSH TAG: " + data);
-                     if (CallBack_READ != null) {
-						PluginResult result = new PluginResult(PluginResult.Status.OK, ret.toString());
-						result.setKeepCallback(true);
-						CallBack_READ.sendPluginResult(result);
-					 }
-                break;
+                    break;
                 case 1://RFID Service PUSH #TAG
                     Bundle bundle = msg.getData();
                     String data = bundle.getString("data");
 		JSONObject ret = new JSONObject(); 
 						 //ret.put("name", msg.getFrom().toString());
 		try{				
-                         ret.put("packageName", "Smith");
+                         ret.put("name", target);
 		 ret.put("value", data);
         }catch(JSONException e){};
         /*
@@ -388,8 +383,9 @@ public class WebIntent extends CordovaPlugin {
 						 .add("value", data)
 						 .build();
                          */
-                    Log.d(null, "PUSH TAG: " + data);
+                    //Log.d(null, "PUSH TAG: " + data);
                      if (CallBack_READ != null) {
+
 						PluginResult result = new PluginResult(PluginResult.Status.OK, ret.toString());
 						result.setKeepCallback(true);
 						CallBack_READ.sendPluginResult(result);
@@ -397,19 +393,7 @@ public class WebIntent extends CordovaPlugin {
                 break;
                 case 2://RFID Service STOPPED
                     Log.d(null, "STOPPED");
-					JSONObject ret = Json.createObjectBuilder()
-						 .add("name", msg.getFrom().toString())
-						 .add("packageName", "Smith")
-						 .add("type", "status")
-						 .add("value", "STOPPED")
-						 .build();
-                    Log.d(null, "PUSH TAG: " + data);
-                     if (CallBack_READ != null) {
-						PluginResult result = new PluginResult(PluginResult.Status.OK, ret.toString());
-						result.setKeepCallback(true);
-						CallBack_READ.sendPluginResult(result);
-					 }
-                    break;
+                     break;
                 case 3://RFID Service INTRODUCING
                     Log.d(null, "INTRODUCE" + msg.obj.toString());
                     break;
@@ -423,12 +407,18 @@ public class WebIntent extends CordovaPlugin {
     private ServiceConnection networkServiceConnection = new ServiceConnection() {
         public void onServiceConnected(ComponentName className, IBinder service) {
             networkService = new Messenger(service);
+
             try {
                 Log.d(null, "grospenis");
                 Log.d(null, className.getClassName());
                 Log.d(null, "grospenis");
                 Message msg = Message.obtain(null, 3);//INTRODUCING
-                msg.replyTo = messenger;
+                for(Device dev : devices) {
+                    if(className.getClassName().equals(dev.name())) {
+                        msg.replyTo = dev.msg;
+                        break;
+                    }
+                }
                 networkService.send(msg);
                 Log.d(null, "Connected to service");
 

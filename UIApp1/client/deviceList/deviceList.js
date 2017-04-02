@@ -26,7 +26,10 @@ Template.deviceList.events({
 				Meteor.call('removeAllPosts');
 				for(var i  in t) {
 					console.log(t[i]);
-					Devices.insert({name: t[i].name, packageName: t[i].packageName, state: "Not started", handler: function(args){console.log(args)}});
+					Devices.insert({name: t[i].name,
+						packageName: t[i].packageName,
+						hdr: function(args){console.log(args)},
+						state: "Not started"});
 					
 					
 					/*JSONArray array;
@@ -50,7 +53,11 @@ for(int n = 0; n < array.length(); n++)
 				//console.log(t[i]);
 				Devices.insert({name: t[i]});
 			}*/
-			Devices.find({'name':t['from']}, {}).fetch()[0].handler(t['value']);
+			console.log(t['name']);
+			console.log(Devices.find({'name':t['name']}, {}).fetch()[0]);
+			for(var i in Devices.find({'name':t['name']}, {}).fetch()[0])
+				console.log(i);
+			Devices.find({'name':t['name']}, {}).fetch()[0].hdr(t['value']);
 		},target.name);
 	},
 	'click .OFFdevice': function(event){
