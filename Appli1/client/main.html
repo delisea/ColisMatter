@@ -73,3 +73,42 @@
       <input type="submit" name="Add Colis">
   </form>
 </template>
+
+<template name="missingArticle">
+  You're receiving this email because at least one of the articles of the package {{Colis.name}} is missing :<p></p>
+  <ol>
+    {{#each articles}}
+      <li>{{articles._ID}} {{articles.name}}</li>
+   {{/each}}
+  </ol> 
+  <p></p>
+  Ces articles ont été perdus le {{itineraire.date}} à {{itineraire.descriptif}}.
+  <p></p>
+  Voici le mail du responsable de cette zone, que vous pouvez contacter : {{user.email}}.
+</template>
+
+<template name="backArticle">
+  You're receiving this email because at least one of the articles of the package {{Colis.name}} which has been missing is back in the package :<p></p>
+  <ol>
+    {{#each articles}}
+      <li>{{articles._ID}} {{articles.name}}</li>
+   {{/each}}
+  </ol> 
+  <p></p>
+  Ces articles ont été retrouvé depuis le {{itineraire.date}} à {{itineraire.descriptif}}.
+  <p></p>
+  Voici le mail du responsable de cette zone, que vous pouvez contacter : {{user.email}}.
+</template>
+
+<template name="findingArticle">
+  You're receiving this email because this article of the package {{Colis.name}} has been found in another package :<p></p>
+  <ol>
+    {{#each articles}}
+      <li>{{articles._ID}} {{articles.name}} has been found in the package {{Colis2.name}} </li>
+   {{/each}}
+  </ol> 
+  <p></p>
+  Ces articles ont été retrouvé depuis le {{itineraire.date}} à {{itineraire.descriptif}}.
+  <p></p>
+  Voici le mail du responsable de cette zone, que vous pouvez contacter : {{user.email}}.
+</template>

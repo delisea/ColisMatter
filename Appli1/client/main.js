@@ -109,10 +109,10 @@ Template.liste.events({
          		});
         Meteor.call(
   'sendEmail',
-  'amodrufavin.hugo@gmail.com',
+  'therugbykiller@gmail.com',
   'antoinedelise976@hotmail.fr',
   'Mail envoyé par appli Meteor',
-  'grospenis'
+  '<p>grospenistarace<p>'
 );
 	}
 });
