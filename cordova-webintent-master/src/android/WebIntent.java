@@ -356,12 +356,14 @@ public class WebIntent extends CordovaPlugin {
             switch (msg.what) {
                 case 0://RFID Service READY
                     Log.d(null, "READY");
+                    /*
 					JSONObject ret = Json.createObjectBuilder()
 						 .add("name", msg.getFrom().toString())
 						 .add("packageName", "Smith")
 						 .add("type", "status")
 						 .add("value", "READY")
 						 .build();
+                         */
                     Log.d(null, "PUSH TAG: " + data);
                      if (CallBack_READ != null) {
 						PluginResult result = new PluginResult(PluginResult.Status.OK, ret.toString());
@@ -372,21 +374,20 @@ public class WebIntent extends CordovaPlugin {
                 case 1://RFID Service PUSH #TAG
                     Bundle bundle = msg.getData();
                     String data = bundle.getString("data");
-<<<<<<< HEAD
 		JSONObject ret = new JSONObject(); 
 						 //ret.put("name", msg.getFrom().toString());
 		try{				
                          ret.put("packageName", "Smith");
 		 ret.put("value", data);
         }catch(JSONException e){};
-=======
+        /*
 					JSONObject ret = Json.createObjectBuilder()
 						 .add("name", msg.getFrom().toString())
 						 .add("packageName", "Smith")
 						 .add("type", "data")
 						 .add("value", data)
 						 .build();
->>>>>>> d679defefa0c2dcdbffbebb5ac9b4a39bf313959
+                         */
                     Log.d(null, "PUSH TAG: " + data);
                      if (CallBack_READ != null) {
 						PluginResult result = new PluginResult(PluginResult.Status.OK, ret.toString());
