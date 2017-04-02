@@ -1,0 +1,1 @@
+{"head":"","body":"","js":"\nTemplate.__checkName(\"connectForm\");\nTemplate[\"connectForm\"] = new Template(\"Template.connectForm\", (function() {\n  var view = this;\n  return \"\";\n}));\n","bodyAttrs":{}}

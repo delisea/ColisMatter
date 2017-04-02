@@ -13,6 +13,12 @@ Meteor.startup(function() {
       console.log("Serveur clean device");
         Devices.remove({});
 
+      },
+      removeAllColis: function() {
+
+      console.log("Serveur clean colist");
+        CoListe.remove({});
+
       }
 
     });

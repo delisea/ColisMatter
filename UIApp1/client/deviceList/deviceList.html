@@ -1,4 +1,5 @@
 <template name="deviceList">
+<div class="Refresh glyphicon glyphicon-refresh text-info" style="cursor: pointer; font-size: 3rem;"></div>
 <!--div style="font-size:2em;" class="list-group"-->
 <div class="list-group">
 
@@ -18,7 +19,6 @@
 	.deviceRow .glyphicon {font-size:4.5rem;} /*1rem = 16px*/
 }
 </style>
-	
 	{{#each devices}}
 		{{#if isStarted state}}
 		<div class="alert alert-success">

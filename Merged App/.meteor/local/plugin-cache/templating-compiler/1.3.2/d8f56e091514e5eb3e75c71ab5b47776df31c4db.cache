@@ -1,0 +1,1 @@
+{"head":"","body":"","js":"\nTemplate.__checkName(\"homeTemplate\");\nTemplate[\"homeTemplate\"] = new Template(\"Template.homeTemplate\", (function() {\n  var view = this;\n  return HTML.Raw('<a href=\"#\" class=\"pull-left\">\\n\\t<img src=\"https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg\" class=\"media-photo\">\\n</a>');\n}));\n","bodyAttrs":{}}
