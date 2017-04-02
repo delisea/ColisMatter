@@ -356,7 +356,7 @@ public class WebIntent extends CordovaPlugin {
                     Bundle bundle = msg.getData();
                     String data = bundle.getString("data");
 					JSONObject ret = new JSONObject(); 
-						 ret.put("name", msg.getFrom().toString());
+						 //ret.put("name", msg.getFrom().toString());
 						 ret.put("packageName", "Smith");
 						 ret.put("value", data);
                     Log.d(null, "PUSH TAG: " + data);
