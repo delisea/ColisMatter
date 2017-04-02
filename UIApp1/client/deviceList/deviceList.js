@@ -19,9 +19,11 @@ Template.deviceList.helpers({
 Template.deviceList.events({
 	'click .Refresh' : function() {
 		if(Meteor.isCordova){
+			
 			cordova.WebIntent.search(function(ret){
+				console.log(ret);
 				var t = JSON.parse(ret);
-				Meteor.call('removeAllDevices');
+				Meteor.call('removeAllPosts');
 				for(var i  in t) {
 					console.log(t[i]);
 					Devices.insert({name: t[i].name, packageName: t[i].packageName, state: "Not started", handler: function(args){console.log(args)}});
@@ -41,7 +43,7 @@ for(int n = 0; n < array.length(); n++)
 		console.log("ON" + event.target.getAttribute('data-targetname'));
 		var target = Devices.find({'name':event.target.getAttribute('data-targetname')}, {}).fetch()[0];
 		Devices.update({_id : target._id},{$set:{state : "Initializing"}});
-		if(isCordova)
+		if(Meteor.isCordova)
 			cordova.WebIntent.startreader(function(args){console.log(args);
 			var t = JSON.parse(args);
 			/*for(var i  in t) {

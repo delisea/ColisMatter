@@ -90,8 +90,13 @@ public class WebIntent extends CordovaPlugin {
 		List<ResolveInfo> resolveInfoList = cordova.getActivity().getApplicationContext().getPackageManager().queryIntentServices(implicitIntent, 0);
 		JSONArray ret = new JSONArray();
 		for(ResolveInfo sensor : resolveInfoList) {
+                                    JSONObject jo = new JSONObject();
+                                    try{
+                                    jo.put("name", sensor.serviceInfo.name);
+                                    jo.put("packageName", sensor.serviceInfo.packageName);
+                                }catch(JSONException e){};
 			devices.add(new Device(sensor.serviceInfo.packageName, sensor.serviceInfo.name));
-			ret.put(sensor.serviceInfo.name);
+			ret.put(jo);
                                     Log.d(null, sensor.serviceInfo.name);
 		}
 		//ResolveInfo serviceInfo = resolveInfoList.get(0);
@@ -355,10 +360,12 @@ public class WebIntent extends CordovaPlugin {
                 case 1://RFID Service PUSH #TAG
                     Bundle bundle = msg.getData();
                     String data = bundle.getString("data");
-					JSONObject ret = new JSONObject(); 
+		JSONObject ret = new JSONObject(); 
 						 //ret.put("name", msg.getFrom().toString());
-						 ret.put("packageName", "Smith");
-						 ret.put("value", data);
+		try{				
+                         ret.put("packageName", "Smith");
+		 ret.put("value", data);
+        }catch(JSONException e){};
                     Log.d(null, "PUSH TAG: " + data);
                      if (CallBack_READ != null) {
 						PluginResult result = new PluginResult(PluginResult.Status.OK, ret.toString());
@@ -383,6 +390,9 @@ public class WebIntent extends CordovaPlugin {
         public void onServiceConnected(ComponentName className, IBinder service) {
             networkService = new Messenger(service);
             try {
+                Log.d(null, "grospenis");
+                Log.d(null, className.getClassName());
+                Log.d(null, "grospenis");
                 Message msg = Message.obtain(null, 3);//INTRODUCING
                 msg.replyTo = messenger;
                 networkService.send(msg);
