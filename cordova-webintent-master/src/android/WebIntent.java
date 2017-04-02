@@ -355,11 +355,10 @@ public class WebIntent extends CordovaPlugin {
                 case 1://RFID Service PUSH #TAG
                     Bundle bundle = msg.getData();
                     String data = bundle.getString("data");
-					JSONObject ret = Json.createObjectBuilder()
-						 .add("name", msg.getFrom().toString())
-						 .add("packageName", "Smith")
-						 .add("value", data)
-						 .build();
+					JSONObject ret = new JSONObject(); 
+						 ret.put("name", msg.getFrom().toString());
+						 ret.put("packageName", "Smith");
+						 ret.put("value", data);
                     Log.d(null, "PUSH TAG: " + data);
                      if (CallBack_READ != null) {
 						PluginResult result = new PluginResult(PluginResult.Status.OK, ret.toString());
