@@ -61,7 +61,8 @@ Template.homeTemplate.rendered = function() {
   Markers.insert({latlng: L.latLng(45.184394, 5.752884)});*/
   var pkg = CoListe.find({}).fetch();
   for(var i in pkg) {
-  	Markers.insert(pkg[i].itineraire);
+  	Markers.insert({latlng: L.latLng(pkg[i].itineraire[0], pkg[i].itineraire[1])});
+  	console.log({latlng: L.latLng(pkg[i].itineraire[0], pkg[i].itineraire[1])});
   }
 
   map = L.map('map', {
