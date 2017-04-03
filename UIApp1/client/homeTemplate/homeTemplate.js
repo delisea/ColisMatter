@@ -66,7 +66,7 @@ Template.homeTemplate.rendered = function() {
   }
 
   map = L.map('map', {
-    doubleClickZoom: false
+    //doubleClickZoom: false
   });//.setView([49.25044, -123.137], 13);
 	//console.log();
   
@@ -91,13 +91,13 @@ Template.homeTemplate.rendered = function() {
   var query = Markers.find();
   query.observe({
     added: function (document) {
-      var marker = L.marker(document.latlng).addTo(map)
-        .on('click', function(event) {
+      var marker = L.marker(document.latlng).addTo(map);
+        /*.on('click', function(event) {
           map.removeLayer(marker);
           Markers.remove({_id: document._id});
-        });
+        });*/
        markers.addLayer(marker);
-    },
+    }/*,
     removed: function (oldDocument) {
       layers = map._layers;
       var key, val;
@@ -109,7 +109,7 @@ Template.homeTemplate.rendered = function() {
           }
         }
       }
-    }
+    }*/
   });
 	geoFitBounds(map, markers.getBounds().pad(1));
 };
