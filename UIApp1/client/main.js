@@ -127,7 +127,7 @@ Meteor.startup(() => {
 			missing: [_idArt list]
 			last_edited
 		*/
-		watchColis = function(tag){
+		watchColis = function(tag){console.log(tag);
 			var parentID = Articles.findOne({Tag: tag}).Colis;
 			var today = new Date();
 			var lastedit = (today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear()) + ' ' + today.getHours() + ':' + today.getMinutes();

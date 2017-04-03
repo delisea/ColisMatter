@@ -4,11 +4,11 @@ Template.navBar.helpers({
 	},*/
 	'objectInArray': function() {
 		return [
-			{name:"Home",last:"Home",age:100},
-			{name:"Colis",last:"page1",age:200},
-			{name:"Devices",last:"page2",age:200},
-			{name:"Watch",last:"page2",age:200},
-			{name:"Disconnect",last:"page2",age:200}
+			{name:"Home",icon:"glyphicon glyphicon-home",age:100},
+			{name:"Colis",icon:"glyphicon glyphicon-barcode",age:200},
+			{name:"Devices",icon:"glyphicon glyphicon-saved",age:200},
+			{name:"Watch",icon:"glyphicon glyphicon-bell",age:200},
+			{name:"Disconnect",icon:"glyphicon glyphicon-off",age:200}
 		];
 	}
 });

@@ -2,6 +2,7 @@ package com.example.delise.myapplication;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -47,6 +48,7 @@ public class FirstService extends Service   {
                     Log.d(null, "Adding client: " + msg.replyTo);
                     clients.add(msg.replyTo);
                     // TODO : test if rfid is ready, send READY or not
+
                 break;
                 case MSG_STOP:
                     Log.d(null, "Client querry to stop.");
@@ -59,10 +61,50 @@ public class FirstService extends Service   {
         }
     }
 
-    private void notify_clients(int MSG, Object Param) {
+    boolean iready = false;
+   /* private void notify_clients(int MSG, Object Param) {
+        *if(!iready) {
+            iready = true;
+            notify_clients(MSG_READY, null);
+        }*
         for (int i = 0; i < clients.size(); i++) {
             try {
                 clients.get(i).send(Message.obtain(null, MSG, Param));
+            } catch (RemoteException e) {
+                Log.d(null, "Removing client: " + clients.get(i));
+                clients.remove(i);
+            }
+        }
+    }*/
+
+    private void notify_clients(int MSG, String Param) {
+        if(!iready) {
+            iready = true;
+            notify_clients(MSG_READY, null);
+        }
+        for (int i = 0; i < clients.size(); i++) {
+            try {
+                /*clients.get(i).send(Message.obtain(null, MSG, new Parcelable(){
+                    String _param;
+                    public Parcelable set(String param){
+                        _param = param;
+                        return this;
+                    }
+                    @Override
+                    public int describeContents() {
+                        return 0;
+                    }
+
+                    @Override
+                    public void writeToParcel(Parcel dest, int flags) {
+                        dest.writeString(_param);
+                    }
+                }.set(Param)));*/
+                Bundle bd = new Bundle();
+                bd.putString("data", Param);
+                Message mess =Message.obtain(null, MSG, null);
+                mess.setData(bd);
+                clients.get(i).send(mess);
             } catch (RemoteException e) {
                 Log.d(null, "Removing client: " + clients.get(i));
                 clients.remove(i);

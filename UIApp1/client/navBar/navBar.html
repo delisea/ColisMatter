@@ -15,6 +15,16 @@
 		margin-bottom: 20px;
 		border: 1px solid transparent;
 	}
+	
+	@media (min-width: 641px) {
+		.merde > .linkImage { display:none;}
+		/*.linkText {display:inline-block}*/
+	}
+
+	@media (max-width: 640px) {
+		/*.linkImage {display:inline-block}*/
+		.merde > .linkText { display:none;}
+	}
 </style>
 <nav class="navbar navbar-default co-navbar-fixed-top">
 	<!--<div class="row">
@@ -29,13 +39,20 @@
 		</div>
 	</div>-->
 	<div class="container-fluid row">
-    <div class="navbar-header col-xs-3 col-sm-3">
-      <a class="navbar-brand navLink" href="#Home" data-targetname="Home">Collismatter</a>
+    <div class="merde navbar-header col-xs-3 col-sm-3">
+      <a class="linkText navbar-brand navLink" href="#Home" data-targetname="Home">Collismatter</a>
     </div>
 	{{#if currentUser}}
-    <ul class="nav navbar-nav col-xs-9 col-sm-9 row">
+    <ul class="merde nav navbar-nav merde col-xs-9 col-sm-9 row">
+    	<li class="col-xs-2 col-sm-2">
+    	</li>
       {{#each objectInArray}}
-      	<li class="{{#if isPage name}}active{{/if}} col-xs-2 col-sm-2"><a class="navLink" href="#{{name}}" data-targetname="{{name}}">{{name}}</a></li>
+      	<li class="linkImage {{#if isPage name}}active{{/if}} col-xs-2 col-sm-2" style="padding: 0;">
+      		<a class=" navImage {{icon}} navLink" href="#{{name}}" data-targetname="{{name}}"></a>
+      	</li>
+      	<li class="linkText {{#if isPage name}}active{{/if}} col-xs-2 col-sm-2">
+      		<a class=" navLink" href="#{{name}}" data-targetname="{{name}}">{{name}}</a>
+      	</li>
 	  {{/each}}
     </ul>
 	{{else}}

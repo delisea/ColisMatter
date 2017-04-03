@@ -369,14 +369,27 @@ public class WebIntent extends CordovaPlugin {
         }
         @Override
         public void handleMessage(Message msg) {
+        JSONObject ret = new JSONObject(); 
             switch (msg.what) {
                 case 0://RFID Service READY
                     Log.d(null, "READY");
+                         //ret.put("name", msg.getFrom().toString());
+        try{                
+                         ret.put("name", target.name());
+                         ret.put("type", "ready");
+         }catch(JSONException e){};
+
+  if (target.callback != null) {
+
+                        PluginResult result = new PluginResult(PluginResult.Status.OK, ret.toString());
+                        result.setKeepCallback(true);
+                        target.callback.sendPluginResult(result);
+                     }
+
                     break;
                 case 1://RFID Service PUSH #TAG
                     Bundle bundle = msg.getData();
                     String data = bundle.getString("data");
-		JSONObject ret = new JSONObject(); 
 						 //ret.put("name", msg.getFrom().toString());
 		try{				
                          ret.put("name", target.name());

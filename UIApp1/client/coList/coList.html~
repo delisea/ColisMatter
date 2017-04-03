@@ -1,25 +1,32 @@
 <template name="coList">
 <link href="css/coList.css" rel="stylesheet">
-<div class="container">
+<!--<div class="container">
 	<div class="row">
 
 		<section class="content">
 			<h1>Table Filter</h1>
-			<div class="col-md-8 col-md-offset-2">
-				<div class="panel panel-default">
+			div class="col-md-8 col-md-offset-2"
+				<div class="panel panel-default">-->
+				{{#if isNotCreating}}
 					<div class="panel-body">
 						<div class="pull-right">
 							<div class="btn-group">
-								<button type="button" class="btn btn-success btn-filter" data-target="pagado">Pagado</button>
-								<button type="button" class="btn btn-warning btn-filter" data-target="pendiente">Pendiente</button>
-								<button type="button" class="btn btn-danger btn-filter" data-target="cancelado">Cancelado</button>
-								<button type="button" class="btn btn-default btn-filter" data-target="all">Todos</button>
+								<button type="button" class="btn btn-success btn-filter" data-target="livre">Livré</button>
+								<button type="button" class="btn btn-warning btn-filter" data-target="transit">En transit</button>
+								<button type="button" class="btn btn-danger btn-filter" data-target="incomplet">Incomplet</button>
+								<button type="button" class="btn btn-default btn-filter" data-target="tous">Tous</button>
+							</div>
+						</div>
+						<div class="pull-left">
+							<div class="btn-group">
+								<button type="button" class="btn btn-info btn-filter" data-target="create">Créer</button>
 							</div>
 						</div>
 						<div class="table-container">
 							<table class="table table-filter">
 								<tbody>
-									<tr data-status="pagado">
+									{{#each colis}}
+									<tr data-status="{{delivered Destination Itineraire}}">
 										<td>
 											<div class="ckbox">
 												<input type="checkbox" id="checkbox1">
@@ -27,26 +34,19 @@
 											</div>
 										</td>
 										<td>
-											<a href="javascript:;" class="star">
-												<i class="glyphicon glyphicon-star"></i>
-											</a>
-										</td>
-										<td>
 											<div class="media">
-												<a href="#" class="pull-left">
-													<img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
-												</a>
 												<div class="media-body">
-													<span class="media-meta pull-right">Febrero 13, 2016</span>
+													<span class="media-meta pull-right">{{Date}}</span>
 													<h4 class="title">
-														Lorem Impsum
-														<span class="pull-right pagado">(Pagado)</span>
+														{{Nom}}({{Tag}})
+														<span class="pull-right {{delivered destination itineraire}}">({{delivered Destination Itineraire}})</span>
 													</h4>
-													<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
+													<p class="summary">{{Itineraire}}</p>
 												</div>
 											</div>
 										</td>
 									</tr>
+									{{/each}}
 									<tr data-status="pendiente">
 										<td>
 											<div class="ckbox">
@@ -55,15 +55,7 @@
 											</div>
 										</td>
 										<td>
-											<a href="javascript:;" class="star">
-												<i class="glyphicon glyphicon-star"></i>
-											</a>
-										</td>
-										<td>
 											<div class="media">
-												<a href="#" class="pull-left">
-													<img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
-												</a>
 												<div class="media-body">
 													<span class="media-meta pull-right">Febrero 13, 2016</span>
 													<h4 class="title">
@@ -83,15 +75,7 @@
 											</div>
 										</td>
 										<td>
-											<a href="javascript:;" class="star">
-												<i class="glyphicon glyphicon-star"></i>
-											</a>
-										</td>
-										<td>
 											<div class="media">
-												<a href="#" class="pull-left">
-													<img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
-												</a>
 												<div class="media-body">
 													<span class="media-meta pull-right">Febrero 13, 2016</span>
 													<h4 class="title">
@@ -111,15 +95,7 @@
 											</div>
 										</td>
 										<td>
-											<a href="javascript:;" class="star star-checked">
-												<i class="glyphicon glyphicon-star"></i>
-											</a>
-										</td>
-										<td>
 											<div class="media">
-												<a href="#" class="pull-left">
-													<img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
-												</a>
 												<div class="media-body">
 													<span class="media-meta pull-right">Febrero 13, 2016</span>
 													<h4 class="title">
@@ -139,15 +115,7 @@
 											</div>
 										</td>
 										<td>
-											<a href="javascript:;" class="star">
-												<i class="glyphicon glyphicon-star"></i>
-											</a>
-										</td>
-										<td>
 											<div class="media">
-												<a href="#" class="pull-left">
-													<img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
-												</a>
 												<div class="media-body">
 													<span class="media-meta pull-right">Febrero 13, 2016</span>
 													<h4 class="title">
@@ -163,7 +131,176 @@
 							</table>
 						</div>
 					</div>
-				</div>
+				{{else}}
+				{{#if isNotRegistering}}	
+					
+					
+					
+					
+					
+					
+					
+					<style>
+						body{
+    background-color: #525252;
+}
+.centered-form{
+	margin-top: 60px;
+}
+
+.centered-form .panel{
+	background: rgba(255, 255, 255, 0.8);
+	box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
+}
+					</style>
+					
+					
+					<div class="container">
+        <div class="row centered-form">
+        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+        	<!--<div class="panel panel-default">
+        		<div class="panel-heading">
+			    		<h3 class="panel-title">Please sign up for Bootsnipp <small>It's free!</small></h3>
+			 			</div>
+			 			<div class="panel-body">
+			    		<form role="form">
+			    			<div class="row">
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			                <input type="text" name="first_name" id="first_name" class="form-control input-sm" placeholder="First Name">
+			    					</div>
+			    				</div>
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			    						<input type="text" name="last_name" id="last_name" class="form-control input-sm" placeholder="Last Name">
+			    					</div>
+			    				</div>
+			    			</div>
+
+			    			<div class="form-group">
+			    				<input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address">
+			    			</div>
+
+			    			<div class="row">
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			    						<input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password">
+			    					</div>
+			    				</div>
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			    						<input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password">
+			    					</div>
+			    				</div>
+			    			</div>
+			    			
+			    			<input type="submit" value="Register" class="btn btn-info btn-block">
+			    		
+			    		</form>
+			    	</div>
+	    		</div>-->
+				<div class="panel panel-default">
+        		<div class="panel-heading">
+			    		<h3 class="panel-title">Package's Creation</h3>
+			 			</div>
+			 			<div class="panel-body">
+			    		<form role="form">
+			    			<div class="row">
+			    				<div class="col-xs-12 col-sm-12 col-md-12">
+			    					<div class="form-group">
+
+			    			<div class="form-group">
+			    				<input type="PackageName" name="PackageName" id="PackageName" class="form-control input-sm" placeholder="Package's Name">
+			    			</div>
+							
+			    			<div class="form-group">
+			    				<input type="ReceiverName" name="ReceiverName" id="ReceiverName" class="form-control input-sm" placeholder="Receiver's name">
+			    			</div>
+							
+			    			<div class="form-group">
+			    				<input type="DeliveryAddress" name="DeliveryAddress" id="DeliveryAddress" class="form-control input-sm" placeholder="Delivery address">
+			    			</div>
+							
+			    			<div class="form-group">
+								<select class="selectpicker form-control" name="deviceSelected" id="deviceSelected">
+								{{#each devices}}
+								  <option {{isDisabled state}}>{{state}}, {{name}}</option>
+								{{/each}}
+								</select>
+			    			</div>
+			    			
+							</div></div>
+							<input type="submit" value="Submit" class="btn btn-info col-xs-6 col-sm-6 col-md-6">
+							<div class="btn btn-danger col-xs-6 col-sm-6 col-md-6 coList_registerCancel">Cancel</div>
+						</div>
+			    		</form>
+			    	</div>
+	    		</div>
+    		</div>
+    	</div>
+    </div>
+					
+				{{else}}
+					
+					
+					
+					
+					<div class="panel-body">
+						<div class="pull-right">
+							<div class="btn-group">
+								<button type="button" class="btn btn-info coList_registerEnd">End</button>
+								<button type="button" class="btn btn-warning coList_registerCancel">Cancel</button>
+							</div>
+						</div>
+						<div class="table-container">
+							<table class="table table-filter">
+								<tbody>
+									{{#each article_reg}}
+									<tr>
+										<td>
+											<button type="button" class="close coList_registerDel" aria-label="Close" style="color: red;" data-target="{{_id}}">
+											  <span aria-hidden="true">&times;</span>
+											</button>
+										</td>
+										<td>
+											<div class="media">
+												<div class="media-body">
+													<h4 class="title">
+														{{Tag}}
+													</h4>
+													<input id="{{_id}}" class="summary" type="text" placeholder="{{Descriptif}}"/>
+													<button type="button" class="btn btn-default btnsetDesc" data-target="{{_id}}">set description</button>
+												</div>
+											</div>
+										</td>
+									</tr>
+									{{else}}
+									<tr>
+										<td>
+										</td>
+										<td>
+											<div class="media">
+												<div class="media-body">
+													<h4 class="title">
+														Any article added
+													</h4>
+													<p id="{{_id}}" class="summary">Please scan to add article to package.</p>
+												</div>
+											</div>
+										</td>
+									</tr>
+									{{/each}}
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="btnscan">scan</div>
+					
+					
+					
+				{{/if}}
+				{{/if}}
+				<!--</div>
 				<div class="content-footer">
 					<p>
 						Page © - 2016 <br>
@@ -173,5 +310,5 @@
 			</div>
 		</section>
 	  </div>
-	</div>
+	</div>-->
 </template>

@@ -28,7 +28,7 @@ Template.deviceList.events({
 					console.log(t[i]);
 					Devices.insert({name: t[i].name,
 						packageName: t[i].packageName,
-						handler: (function(args){watchColis(args);}).toString(),
+						handler: (function(args){console.log("xxxxxxxxxxxxx"+args);/*watchColis(args);*/}).toString(),
 						state: "Not started"});
 					
 					
@@ -47,19 +47,28 @@ for(int n = 0; n < array.length(); n++)
 		var target = Devices.find({'name':event.target.getAttribute('data-targetname')}, {}).fetch()[0];
 		console.log(target);
 		//target.handler("test");
-		Devices.update({_id : target._id},{$set:{state : "Initializing"}});
+		Devices.update({_id : target._id},{$set:{state : "Started"/*"Initializing"*/}});
 		if(Meteor.isCordova)
 			cordova.WebIntent.startreader(function(args){
+
+				/*Devices.insert({name: "b",
+						packageName:"a",
+						handler: "",
+						state: "Not started"});*/
+
 				var t = JSON.parse(args);
-				var tgt = Devices.find({name:t['name']}, {}).fetch()[0];
+				var tgt = Devices.find({name:t['name']}).fetch()[0];
+				console.log(t['name']);
+				console.log(Devices.find({name:t['name']}));
+				console.log(Devices.find({}));
 				
 				//
 				if(t['type'] == 'status') {
 					Devices.update({_id : tgt._id},{$set:{state : t['type']}});
 				}
 				else if(t['type'] == 'push') {
-					for(i in tgt)
-					console.log(i);
+					/*for(i in tgt)
+					console.log(i);*/
 					console.log(tgt.handler);
 					tgt.handler(t['value']);
 				}

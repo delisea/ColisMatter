@@ -44,7 +44,7 @@ Template.coList.events({
 
 		Tracker.autorun(function (computation) {
 		  userGeoLocation.set(Geolocation.currentLocation());
-		  if (userGeoLocation.get()) {console.log(userGeoLocation.get());
+		  if (userGeoLocation.get()||true) {console.log(userGeoLocation.get());
 			//stop the tracker if we got something
 			computation.stop();
 			
@@ -53,7 +53,7 @@ Template.coList.events({
 			t.ITID = /*Itinerraires.insert(*/{
 				Date: (today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear()) + ' ' + today.getHours() + ':' + today.getMinutes(),
 				Descriptif: Meteor.user().profile.address,
-				Coordinates: userGeoLocation.get().coords
+				Coordinates: [0,0]//userGeoLocation.get().coords
 			};
 			t.colis = /*CoListe.insert(*/{
 				Nom: e.target.PackageName.value,
@@ -66,14 +66,15 @@ Template.coList.events({
 				Proprietaire: Meteor.userId(),
 				Valide: true
 			};
-			
-			Devices.update({'name': e.target.deviceSelected.value}, {$set:{handler: function(tag){
+			console.log(e.target.deviceSelected.value);
+			var dev = Devices.find({'name': e.target.deviceSelected.value}).fetch()[0]._id;
+			Devices.update({_id: dev}, {$set:{handler: (function(tag){
 				t.article_reg.insert({Tag: tag,
 							Descriptif: "",
 							AbsentDepuis: undefined,
 							RetrouveA: undefined,
 							Colis: 0});
-			}}});
+			}).toString()}});
 			Session.set('coList_state', 2);
 		  }
 		});
