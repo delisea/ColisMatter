@@ -57,8 +57,12 @@ window.addEventListener(orientationEvent, function() {
 Template.homeTemplate.rendered = function() {
   L.Icon.Default.imagePath = '/packages/bevanhunt_leaflet/images/';
   
-  Markers.insert({latlng: L.latLng(45.1667, 5.7667)});
-  Markers.insert({latlng: L.latLng(45.184394, 5.752884)});
+  /*Markers.insert({latlng: L.latLng(45.1667, 5.7667)});
+  Markers.insert({latlng: L.latLng(45.184394, 5.752884)});*/
+  var pkg = CoListe.find({}).fetch();
+  for(var i in pkg) {
+  	Markers.insert(pkg[i].itineraire);
+  }
 
   map = L.map('map', {
     doubleClickZoom: false
@@ -70,14 +74,14 @@ Template.homeTemplate.rendered = function() {
 		[45.184394, 5.752884]
 	], {paddingTopLeft: [0, $(".table-cell").outerHeight()]});*/
 	
-	console.log($(".table-cell").outerHeight());
+	//console.log($(".table-cell").outerHeight());
 	
 
   L.tileLayer.provider('OpenStreetMap.Mapnik').addTo(map);
-
+/*
   map.on('dblclick', function(event) {
     Markers.insert({latlng: event.latlng});
-  });
+  });*/
 
   // add clustermarkers
   markers = L.markerClusterGroup();
