@@ -26,7 +26,7 @@
 							<table class="table table-filter">
 								<tbody>
 									{{#each colis}}
-									<tr data-status="{{delivered destination itineraire}}">
+									<tr data-status="{{delivered Destination Itineraire}}">
 										<td>
 											<div class="ckbox">
 												<input type="checkbox" id="checkbox1">
@@ -36,12 +36,12 @@
 										<td>
 											<div class="media">
 												<div class="media-body">
-													<span class="media-meta pull-right">{{date}}</span>
+													<span class="media-meta pull-right">{{Date}}</span>
 													<h4 class="title">
-														{{name}}({{tag}})
-														<span class="pull-right {{delivered destination itineraire}}">({{delivered destination itineraire}})</span>
+														{{Nom}}({{Tag}})
+														<span class="pull-right {{delivered destination itineraire}}">({{delivered Destination Itineraire}})</span>
 													</h4>
-													<p class="summary">{{itineraire}}</p>
+													<p class="summary">{{Itineraire}}</p>
 												</div>
 											</div>
 										</td>
@@ -132,7 +132,7 @@
 						</div>
 					</div>
 				{{else}}
-					
+				{{#if isNotRegistering}}	
 					
 					
 					
@@ -220,6 +220,14 @@
 			    			<div class="form-group">
 			    				<input type="DeliveryAddress" name="DeliveryAddress" id="DeliveryAddress" class="form-control input-sm" placeholder="Delivery address">
 			    			</div>
+							
+			    			<div class="form-group">
+								<select class="selectpicker form-control" name="deviceSelected" id="deviceSelected">
+								{{#each devices}}
+								  <option {{isDisabled state}}>{{state}}, {{name}}</option>
+								{{/each}}
+								</select>
+			    			</div>
 			    			
 							</div></div>
 							<input type="submit" value="Submit" class="btn btn-info col-xs-6 col-sm-6 col-md-6">
@@ -232,16 +240,65 @@
     	</div>
     </div>
 					
+				{{else}}
 					
 					
 					
 					
+					<div class="panel-body">
+						<div class="pull-right">
+							<div class="btn-group">
+								<button type="button" class="btn btn-info coList_registerEnd">End</button>
+								<button type="button" class="btn btn-warning coList_registerCancel">Cancel</button>
+							</div>
+						</div>
+						<div class="table-container">
+							<table class="table table-filter">
+								<tbody>
+									{{#each article_reg}}
+									<tr>
+										<td>
+											<button type="button" class="close coList_registerDel" aria-label="Close" style="color: red;" data-target="{{_id}}">
+											  <span aria-hidden="true">&times;</span>
+											</button>
+										</td>
+										<td>
+											<div class="media">
+												<div class="media-body">
+													<h4 class="title">
+														{{Tag}}
+													</h4>
+													<input id="{{_id}}" class="summary" type="text" placeholder="{{Descriptif}}"/>
+													<button type="button" class="btn btn-default btnsetDesc" data-target="{{_id}}">set description</button>
+												</div>
+											</div>
+										</td>
+									</tr>
+									{{else}}
+									<tr>
+										<td>
+										</td>
+										<td>
+											<div class="media">
+												<div class="media-body">
+													<h4 class="title">
+														Any article added
+													</h4>
+													<p id="{{_id}}" class="summary">Please scan to add article to package.</p>
+												</div>
+											</div>
+										</td>
+									</tr>
+									{{/each}}
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="btnscan">scan</div>
 					
 					
 					
-					
-					
-					
+				{{/if}}
 				{{/if}}
 				<!--</div>
 				<div class="content-footer">

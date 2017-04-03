@@ -12,6 +12,19 @@ Meteor.subscribe('markers');
 var map;
 var markers;
 
+Template.homeTemplate.helpers({
+	'username': function(){
+		console.log("ici");
+		console.log(Meteor.user());
+		return Meteor.user().username;
+	},
+	'address': function(){
+		console.log("ici");
+		console.log(Meteor.user());
+		return Meteor.user().profile.address;
+	}
+});
+
 var geoFitBounds = function(map, bbox) {
         var b = L.latLngBounds(bbox);
             pb = L.bounds(map.project(b.getSouthWest()), map.project(b.getNorthEast())),

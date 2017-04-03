@@ -7,6 +7,7 @@ Template.navBar.helpers({
 			{name:"Home",last:"Home",age:100},
 			{name:"Colis",last:"page1",age:200},
 			{name:"Devices",last:"page2",age:200},
+			{name:"Watch",last:"page2",age:200},
 			{name:"Disconnect",last:"page2",age:200}
 		];
 	}

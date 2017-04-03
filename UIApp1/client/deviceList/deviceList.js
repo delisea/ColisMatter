@@ -28,7 +28,7 @@ Template.deviceList.events({
 					console.log(t[i]);
 					Devices.insert({name: t[i].name,
 						packageName: t[i].packageName,
-						hdr: function(args){console.log(args)},
+						hdr: function(args){watchColis(args)},
 						state: "Not started"});
 					
 					
@@ -45,20 +45,30 @@ for(int n = 0; n < array.length(); n++)
 	'click .ONdevice': function(event){
 		console.log("ON" + event.target.getAttribute('data-targetname'));
 		var target = Devices.find({'name':event.target.getAttribute('data-targetname')}, {}).fetch()[0];
+		console.log(target);
+		//target.handler("test");
 		Devices.update({_id : target._id},{$set:{state : "Initializing"}});
 		if(Meteor.isCordova)
-			cordova.WebIntent.startreader(function(args){console.log(args);
-			var t = JSON.parse(args);
-			/*for(var i  in t) {
-				//console.log(t[i]);
-				Devices.insert({name: t[i]});
-			}*/
-			console.log(t['name']);
-			console.log(Devices.find({'name':t['name']}, {}).fetch()[0]);
-			for(var i in Devices.find({'name':t['name']}, {}).fetch()[0])
-				console.log(i);
-			Devices.find({'name':t['name']}, {}).fetch()[0].hdr(t['value']);
-		},target.name);
+			cordova.WebIntent.startreader(function(args){
+				//console.log(args);
+				var tgt = Devices.find({'name':t['name']}, {}).fetch()[0];
+				var t = JSON.parse(args);
+				if(t['type'] == 'status') {
+					Devices.update({_id : tgt._id},{$set:{state : t['type']}});
+				}
+				else if(t['type'] == 'push') {
+					target.handler(t['value']);
+				}
+				/*for(var i  in t) {
+					//console.log(t[i]);
+					Devices.insert({name: t[i]});
+				}*/
+				//console.log(t['name']);
+				//console.log(Devices.find({'name':t['name']}, {}).fetch()[0]);
+				//for(var i in Devices.find({'name':t['name']}, {}).fetch()[0])
+				//	console.log(i);
+				
+			},target.name);
 	},
 	'click .OFFdevice': function(event){
 		//alert("OFF " + event.target.getAttribute('data-targetname'));

@@ -22,7 +22,11 @@
 {{#if isPage "Colis"}}
 {{> coList}}
 {{else}}
+{{#if isPage "Watch"}}
+{{> watchColis}}
+{{else}}
 {{> homeTemplate}}
+{{/if}}
 {{/if}}
 {{/if}}
 

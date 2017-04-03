@@ -48,7 +48,9 @@ Template.connectform.events({
             username: username,
             email: email,
             password: mdp,
-			address: address
+			profile: {
+				address: address
+			}
           },function(error){console.log("error");if(error)console.log(error);});
 		  console.log("done");
 	}

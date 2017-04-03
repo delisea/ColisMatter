@@ -55,12 +55,13 @@ public class WebIntent extends CordovaPlugin {
 	protected class Device {
 		protected String _packageName;
 		protected String _name;
-                        public Messenger msg;
+        public Messenger msg;
+		public CallbackContext callback = null;
 		
 		public Device(String packageName, String name) {
 			_packageName = packageName;
 			_name = name;
-                                    msg = new Messenger(new IncomingHandler(name));
+            msg = new Messenger(new IncomingHandler(this));
 ;
 
 		}
@@ -320,7 +321,13 @@ public class WebIntent extends CordovaPlugin {
 		}
 		if(inte == null)
 			clbr.sendPluginResult(new PluginResult(PluginResult.Status.INVALID_ACTION));
-    	CallBack_READ = clbr;
+    	//CallBack_READ = clbr;
+		for(Device dev : devices) {
+			if(className.getClassName().equals(dev.name())) {
+				dev.callback = clbr;
+				break;
+			}
+		}
         cordova.getActivity().getApplicationContext().startService(inte);
         cordova.getActivity().getApplicationContext().bindService(inte, networkServiceConnection, Context.BIND_AUTO_CREATE);
     }
@@ -351,14 +358,14 @@ public class WebIntent extends CordovaPlugin {
         }
     };
 
-    private static CallbackContext CallBack_READ = null;
+    //private static CallbackContext CallBack_READ = null;
 
     private static class IncomingHandler extends Handler {
-        String target;
+        Device target;
 
-        public IncomingHandler(String trg){
+        public IncomingHandler(Device dev){
             super();
-            target = trg;
+            target = dev;
         }
         @Override
         public void handleMessage(Message msg) {
@@ -373,6 +380,7 @@ public class WebIntent extends CordovaPlugin {
 						 //ret.put("name", msg.getFrom().toString());
 		try{				
                          ret.put("name", target);
+						 ret.put("type", "push");
 		 ret.put("value", data);
         }catch(JSONException e){};
         /*
@@ -384,11 +392,11 @@ public class WebIntent extends CordovaPlugin {
 						 .build();
                          */
                     //Log.d(null, "PUSH TAG: " + data);
-                     if (CallBack_READ != null) {
+                     if (target.callback != null) {
 
 						PluginResult result = new PluginResult(PluginResult.Status.OK, ret.toString());
 						result.setKeepCallback(true);
-						CallBack_READ.sendPluginResult(result);
+						target.callback.sendPluginResult(result);
 					 }
                 break;
                 case 2://RFID Service STOPPED

@@ -11,7 +11,13 @@
 CoListe = new Mongo.Collection('colis');
 
 
-Devices = new Mongo.Collection('devices');
+Devices = new Meteor.Collection('devices', {
+  transform: function(x) {
+    var y = _.extend({}, x);
+    y.handler = new Function("return " + x.handler)();
+    return y;
+  }
+});
 
 /*
 	_id,
@@ -19,7 +25,7 @@ Devices = new Mongo.Collection('devices');
 	Descriptif,
 	Coordinates
 */
-Itinerraires = new Mongo.Collection('itinerraires');
+Itineraires = new Mongo.Collection('itineraires');
 
 /*
 	_id,
