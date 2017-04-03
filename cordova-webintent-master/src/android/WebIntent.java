@@ -323,7 +323,7 @@ public class WebIntent extends CordovaPlugin {
 			clbr.sendPluginResult(new PluginResult(PluginResult.Status.INVALID_ACTION));
     	//CallBack_READ = clbr;
 		for(Device dev : devices) {
-			if(className.getClassName().equals(dev.name())) {
+			if(name.equals(dev.name())) {
 				dev.callback = clbr;
 				break;
 			}
@@ -379,7 +379,7 @@ public class WebIntent extends CordovaPlugin {
 		JSONObject ret = new JSONObject(); 
 						 //ret.put("name", msg.getFrom().toString());
 		try{				
-                         ret.put("name", target);
+                         ret.put("name", target.name());
 						 ret.put("type", "push");
 		 ret.put("value", data);
         }catch(JSONException e){};
